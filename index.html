@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Tom's Ice Cream - Artisan Ice Cream</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="Existing Poduct Shots/logo.avif" alt="Farmer Tom's Ice Cream">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#story">Our Story</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="Main Page Video/1003.mov" type="video/mp4">
+        </video>
+        <div class="hero-overlay">
+            <h1 class="hero-title">FARMER TOM'S ICE CREAM</h1>
+        </div>
+    </section>
+
+    <!-- Scroll Darkening Overlay -->
+    <div class="scroll-darkening-overlay"></div>
+
+    <!-- Ice Cream Categories Section -->
+    <section class="categories-section">
+        <div class="section-container">
+            <h2 class="section-title">Our Collections</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="Ice Cream Section Logos:images/Dairy.png" alt="Normal Ice Cream">
+                    </div>
+                    <h3>Classic Ice Cream</h3>
+                    <p>Our traditional dairy ice cream collection featuring timeless favorites and innovative flavors</p>
+                    <a href="#products?category=normal" class="discover-button">DISCOVER</a>
+                </div>
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="Ice Cream Section Logos:images/Milk Maid.png" alt="Milk Maid">
+                    </div>
+                    <h3>Milk Maid</h3>
+                    <p>Specially crafted with unique milk formulation for a lighter, refreshing taste</p>
+                    <a href="#products?category=milkmaid" class="discover-button">DISCOVER</a>
+                </div>
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="Ice Cream Section Logos:images/Coconut.png" alt="Coconut Plant-Based">
+                    </div>
+                    <h3>Coconut Plant-Based</h3>
+                    <p>Delicious dairy-free alternatives made with creamy coconut for everyone to enjoy</p>
+                    <a href="#products?category=coconut" class="discover-button">DISCOVER</a>
+                </div>
+                <div class="category-card">
+                    <div class="category-image">
+                        <img src="Ice Cream Section Logos:images/sorbet.png" alt="Sorbet">
+                    </div>
+                    <h3>Sorbets</h3>
+                    <p>Refreshing fruit-based sorbets bursting with natural flavors</p>
+                    <a href="#products?category=sorbet" class="discover-button">DISCOVER</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section id="story" class="story-section">
+        <div class="section-container">
+            <div class="content-grid">
+                <div class="content-text">
+                    <h2>Crafted with care</h2>
+                    <p>At Farmer Tom's, we believe exceptional ice cream starts with exceptional ingredients. Every batch is handcrafted using fresh milk from local farms, creating flavors that honor tradition while embracing creativity.</p>
+                    <p>Our commitment to quality has earned recognition across the industry, but our greatest reward is the joy we bring to every scoop.</p>
+                </div>
+                <div class="content-image">
+                    <img src="Existing Poduct Shots/background icecream image.avif" alt="Ice Cream Making Process">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Showcase -->
+    <section id="products" class="products-section">
+        <div class="section-container">
+            <h2 class="section-title">All Flavours</h2>
+
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">All Flavours</button>
+                <button class="filter-btn" data-category="normal">Normal Ice Cream</button>
+                <button class="filter-btn" data-category="milkmaid">Milk Maid</button>
+                <button class="filter-btn" data-category="coconut">Coconut (Plant-Based)</button>
+                <button class="filter-btn" data-category="sorbet">Sorbet</button>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="products-container">
+                <!-- Products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards" class="awards-section">
+        <div class="section-container">
+            <h2 class="section-title">Recognition</h2>
+            <div class="awards-grid">
+                <div class="award-item">
+                    <img src="Existing Poduct Shots/TOTW Gold award image.avif" alt="Taste of the West Gold Award">
+                </div>
+                <div class="award-item">
+                    <img src="Existing Poduct Shots/ICA award image.avif" alt="Ice Cream Alliance Award">
+                </div>
+                <div class="award-item">
+                    <img src="Existing Poduct Shots/Salsa Award image.avif" alt="Salsa Award">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Section -->
+    <section class="delivery-section">
+        <div class="section-container">
+            <div class="content-grid reverse">
+                <div class="content-image">
+                    <img src="Existing Poduct Shots/Delivery Area Map.avif" alt="Delivery Area">
+                </div>
+                <div class="content-text">
+                    <h2>Delivered fresh</h2>
+                    <p>We deliver our artisan ice cream throughout the region, ensuring every tub arrives in perfect condition.</p>
+                    <p>Our insulated packaging keeps your ice cream at the ideal temperature from our farm to your door.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="section-container">
+            <div class="contact-content">
+                <h2>Let's connect</h2>
+                <p>Ready to experience exceptional ice cream?</p>
+                <a href="mailto:hello@farmertoms.com" class="cta-button">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Farmer Tom's Ice Cream</h4>
+                    <p>Crafting exceptional ice cream since day one</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: hello@farmertoms.com</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow</h4>
+                    <p>Instagram | Facebook | Twitter</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Farmer Tom's Ice Cream. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

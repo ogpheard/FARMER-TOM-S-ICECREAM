@@ -1,0 +1,59 @@
+Name,Type,Award,Sizes,120ml,1ltr,2ltr,2.4ltr,4ltr,4.5ltr,10ltr
+Clotted Cream Vanilla,Normal,Taste of the West (Gold),"['120ml', '1ltr', '2ltr', '4ltr', '4.5ltr', '10ltr']",True,True,True,False,True,True,True
+Dairy Vanilla,Normal,,"['1ltr', '2ltr', '4ltr']",False,True,True,False,True,False,False
+Banana,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False
+Banoffee,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False
+Biscoff,Normal,Taste of the West (Silver),"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True
+Black & Blue,Normal,,"['1ltr', '4ltr']",False,True,False,False,True,False,False
+Blackberry Crumble,Normal,,"['1ltr', '2ltr', '4ltr', '4.5ltr']",False,True,True,False,True,True,False
+Black Cherry,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False
+Blackcurrant (Ice Cream),Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True
+Candyfloss,Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True
+Caramel Crunch,Normal,,"['1ltr', '2ltr', '4ltr', '4.5ltr']",False,True,True,False,True,True,False
+Caffe Latte,Normal,,"['1ltr', '4ltr']",False,True,False,False,True,False,False
+Cappuccino Crunch,Normal,Taste of the West (Gold),"['120ml', '1ltr', '4ltr', '4.5ltr']",True,True,False,False,True,True,False
+Cherry Bakewell,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False
+Chocolate Orange,Normal,,"['1ltr', '4.5ltr', '10ltr']",False,True,False,False,False,True,True
+Chunky Ginger,Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True
+Coffee Mocha,Normal,,"['1ltr', '2ltr', '4ltr', '4.5ltr']",False,True,True,False,True,True,False
+Coconut Cream,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False
+Cookie Dough,Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True
+Chocolate Caramel Crunch,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False
+Double Choc,Normal,,"['120ml', '1ltr', '2ltr', '4ltr', '4.5ltr', '10ltr']",True,True,True,False,True,True,True
+Eton Mess,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False
+Honeycomb,Normal,,"['120ml', '1ltr', '4ltr', '4.5ltr', '10ltr']",True,True,False,False,True,True,True
+Lemon Crunch,Normal,,"['1ltr', '4.5ltr']",False,True,False,False,False,True,False
+Lemon Meringue,Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True
+Malty Munch,Normal,,"['120ml', '1ltr', '2ltr', '4ltr', '4.5ltr']",True,True,True,False,True,True,False
+Mango Swirl,Normal,,"['1ltr', '4.5ltr']",False,True,False,False,False,True,False
+Maple & Walnut,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False
+Mint Choc Chunk,Normal,,"['120ml', '1ltr', '2ltr', '4ltr', '4.5ltr', '10ltr']",True,True,True,False,True,True,True
+Nuttytella,Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True
+Oreo,Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True
+Pistachio,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False
+Raspberry (Ice Cream),Normal,,"['120ml', '1ltr', '4ltr', '4.5ltr', '10ltr']",True,True,False,False,True,True,True
+Raspberry Pavlova,Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True
+Rum & Raisin,Normal,,"['120ml', '1ltr', '2ltr', '4ltr', '4.5ltr', '10ltr']",True,True,True,False,True,True,True
+Salted Caramel,Normal,,"['120ml', '1ltr', '2ltr', '4ltr', '4.5ltr', '10ltr']",True,True,True,False,True,True,True
+Strawberry,Normal,,"['120ml', '1ltr', '2ltr', '4ltr', '4.5ltr', '10ltr']",True,True,True,False,True,True,True
+Strawberry Cheesecake,Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True
+Summer Fruits,Normal,,['1ltr'],False,True,False,False,False,False,False
+Toffee Fudge,Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True
+Turkish Delight,Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True
+White Chocolate Avalanche,Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True
+White Choc & Honeycomb,Normal,,"['1ltr', '4ltr', '10ltr']",False,True,False,False,True,False,True
+White Choc & Raspberry,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False
+26 Miles,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False
+Blackcurrant (Sorbet),Sorbet,,['2.4ltr'],False,False,False,True,False,False,False
+Lemon (Sorbet),Sorbet,,"['120ml', '1ltr', '2.4ltr']",True,True,False,True,False,False,False
+Mango (Sorbet),Sorbet,,"['120ml', '1ltr', '2.4ltr']",True,True,False,True,False,False,False
+Orange (Sorbet),Sorbet,,['2.4ltr'],False,False,False,True,False,False,False
+Passionfruit (Sorbet),Sorbet,,['2.4ltr'],False,False,False,True,False,False,False
+Raspberry (Sorbet),Sorbet,,['2.4ltr'],False,False,False,True,False,False,False
+Vanilla Coconut,Plant-based (Coconut),,"['1ltr', '2.4ltr']",False,True,False,True,False,False,False
+Chocolate Coconut,Plant-based (Coconut),,"['120ml', '1ltr', '2.4ltr']",True,True,False,True,False,False,False
+Caramel Coconut,Plant-based (Coconut),,"['1ltr', '2.4ltr']",False,True,False,True,False,False,False
+Strawberry Coconut,Plant-based (Coconut),,"['1ltr', '2.4ltr']",False,True,False,True,False,False,False
+Honeycomb Coconut,Plant-based (Coconut),,"['120ml', '1ltr', '2.4ltr']",True,True,False,True,False,False,False
+Vanilla (Milk Maid),Milk Maid,,"['2ltr', '4ltr']",False,False,True,False,True,False,False
+Bubblegum (Milk Maid),Milk Maid,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True
