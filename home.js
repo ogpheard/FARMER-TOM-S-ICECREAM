@@ -8,23 +8,17 @@ window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     const windowHeight = window.innerHeight;
 
-    // Show navigation only when scrolling down from hero
-    if (currentScroll > 100) {
-        nav.classList.add('visible');
-    } else {
-        nav.classList.remove('visible');
-    }
-
-    // Video darkening effect - darken as you scroll down
+    // Video fade to white effect - fade to white as you scroll down
     if (currentScroll < windowHeight) {
         const scrollProgress = currentScroll / windowHeight;
-        const brightness = 1 - (scrollProgress * 0.6); // Darken up to 60%
+        const whiteOverlay = scrollProgress; // 0 to 1 (0% to 100% white)
         if (heroVideo) {
-            heroVideo.style.filter = `brightness(${brightness})`;
+            // Create a white fade effect using brightness and grayscale
+            heroVideo.style.filter = `brightness(${1 + whiteOverlay * 2}) saturate(${1 - whiteOverlay})`;
         }
     } else {
         if (heroVideo) {
-            heroVideo.style.filter = 'brightness(0.4)';
+            heroVideo.style.filter = 'brightness(3) saturate(0)'; // Fully white
         }
     }
 
