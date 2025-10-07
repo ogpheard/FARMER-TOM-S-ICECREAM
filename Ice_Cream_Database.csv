@@ -1,0 +1,26 @@
+Name,Type,Award,Sizes,120ml,1ltr,2ltr,2.4ltr,4ltr,4.5ltr,10ltr,DAIRY,EGGS,GLUTEN,NUTS,OATS,PEANUTS,SOYA,SULPHITES,SULPHUR DIOXIDE,WHEAT,OTHER
+Clotted Cream Vanilla,Normal,Taste of the West (Gold),"['120ml', '1ltr', '2ltr', '4ltr', '4.5ltr', '10ltr']",True,True,True,False,True,True,True,Y,,,,,,,,,,*
+Dairy Vanilla,Normal,,"['1ltr', '2ltr', '4ltr']",False,True,True,False,True,False,False,Y,,,,,,,,,,*
+Banana,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False,Y,,,,,,,,,,*
+Banoffee,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False,Y,Y,Y,,,,Y,,,,*
+Biscoff,Normal,Taste of the West (Silver),"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True,Y,Y,Y,,Y,,Y,,,,*
+Black & Blue,Normal,,"['1ltr', '4ltr']",False,True,False,False,True,False,False,Y,,,,,,,,,,*
+Blackberry Crumble,Normal,,"['1ltr', '2ltr', '4ltr', '4.5ltr']",False,True,True,False,True,True,False,Y,,Y,,,,Y,,,Y,*
+Black Cherry,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False,Y,,,,,,,,,,* May contain sesame seed traces
+Blackcurrant (Ice Cream),Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True,,,,,,,,,,Y,* Contains hydrolysed WHEAT proteins (per PDF). Some list 'May contain traces of milk'. May contain traces of milk
+Candyfloss,Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True,Y,,,,,,,,,,*
+Caramel Crunch,Normal,,"['1ltr', '2ltr', '4ltr', '4.5ltr']",False,True,True,False,True,True,False,Y,,,,,,,,,,"* May contain traces of egg, soyabean, peanuts, sesame seeds, other nuts"
+Caffe Latte,Normal,,"['1ltr', '4ltr']",False,True,False,False,True,False,False,Y,,,,,,,,,,*
+Cappuccino Crunch,Normal,Taste of the West (Gold),"['120ml', '1ltr', '4ltr', '4.5ltr']",True,True,False,False,True,True,False,Y,,Y,,,,Y,,,Y,* Lactose
+Cherry Bakewell,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False,Y,Y,Y,Y,,,,,,Y,* Almonds (Nuts)
+Chocolate Orange,Normal,,"['1ltr', '4.5ltr', '10ltr']",False,True,False,False,False,True,True,Y,,,,,,,,,,*
+Chunky Ginger,Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True,Y,,,,,,,,,,*
+Coffee Mocha,Normal,,"['1ltr', '2ltr', '4ltr', '4.5ltr']",False,True,True,False,True,True,False,Y,,Y,,,,Y,,,,* Lactose
+Coconut Cream,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False,Y,,,,,,,,,,*
+Cookie Dough,Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True,Y,Y,Y,,,,Y,,,Y,* May contain Nuts
+Chocolate Caramel Crunch,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False,Y,,Y,,,,Y,,,Y,"* May contain oats, egg, lupin, nuts"
+Double Choc,Normal,,"['120ml', '1ltr', '2ltr', '4ltr', '4.5ltr', '10ltr']",True,True,True,False,True,True,True,Y,,Y,,,,Y,,,Y,* Lactose
+Eton Mess,Normal,,"['1ltr', '4ltr', '4.5ltr']",False,True,False,False,True,True,False,Y,Y,Y,,,,,,,Y,*
+Honeycomb,Normal,,"['120ml', '1ltr', '4ltr', '4.5ltr', '10ltr']",True,True,False,False,True,True,True,Y,,Y,,,,Y,,,Y,*
+Lemon Crunch,Normal,,"['1ltr', '4.5ltr']",False,True,False,False,False,True,False,Y,Y,Y,,,,,,,Y,*
+Lemon Meringue,Normal,,"['1ltr', '4ltr', '4.5ltr', '10ltr']",False,True,False,False,True,True,True,Y,Y,Y,,,,,,,Y,*

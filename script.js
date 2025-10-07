@@ -80,36 +80,146 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Parallax effect for hero image
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroImage = document.querySelector('.hero-image');
-    if (heroImage && scrolled < window.innerHeight) {
-        heroImage.style.transform = `translateY(${scrolled * 0.3}px) scale(${1 - scrolled * 0.0001})`;
-    }
-});
-
-// Add hover effect to content images
-const contentImages = document.querySelectorAll('.content-image');
-contentImages.forEach(image => {
-    image.addEventListener('mouseenter', () => {
-        image.style.transform = 'scale(1.02)';
-    });
-    image.addEventListener('mouseleave', () => {
-        image.style.transform = 'scale(1)';
-    });
-});
-
 // Ice Cream Products Data and Filtering
 let iceCreamProducts = [];
+
+// Product descriptions
+const productDescriptions = {
+    'Clotted Cream Vanilla': 'A luxurious blend of premium clotted cream and Madagascar vanilla, creating an indulgent and creamy experience with every scoop.',
+    'Dairy Vanilla': 'Classic vanilla ice cream made with fresh dairy and natural vanilla extract for a timeless taste.',
+    'Banana': 'Sweet and creamy banana ice cream with a natural fruit flavor that captures the essence of ripe bananas.',
+    'Banoffee': 'A delightful combination of banana, toffee, and biscuit pieces inspired by the classic British dessert.',
+    'Biscoff': 'Rich and creamy ice cream swirled with crunchy Biscoff cookie pieces and caramelized biscuit flavor.',
+    'Black & Blue': 'A vibrant mix of blackberries and blueberries creating a fruity and refreshing treat.',
+    'Blackberry Crumble': 'Sweet blackberries combined with buttery crumble pieces for a dessert-inspired delight.',
+    'Black Cherry': 'Rich vanilla ice cream studded with sweet and tart black cherry pieces.',
+    'Blackcurrant (Ice Cream)': 'Tangy blackcurrant flavor creates a refreshing and fruity ice cream experience.',
+    'Candyfloss': 'Sweet and nostalgic candyfloss flavor that brings back memories of the fairground.',
+    'Caramel Crunch': 'Smooth caramel ice cream with crunchy honeycomb pieces for delightful texture.',
+    'Caffe Latte': 'Coffee lovers\' dream with rich espresso flavor and creamy milk.',
+    'Cappuccino Crunch': 'Espresso ice cream with chocolate-covered coffee beans and a hint of cinnamon.',
+    'Cherry Bakewell': 'Inspired by the classic tart, featuring cherry and almond flavors with cake pieces.',
+    'Chocolate Orange': 'Rich chocolate ice cream infused with natural orange essence.',
+    'Chunky Ginger': 'Warming ginger ice cream with chunks of crystallized ginger throughout.',
+    'Coffee Mocha': 'A perfect blend of rich coffee and smooth chocolate for mocha lovers.',
+    'Coconut Cream': 'Tropical coconut flavor with a rich and creamy texture.',
+    'Cookie Dough': 'Vanilla ice cream loaded with chunks of edible chocolate chip cookie dough.',
+    'Chocolate Caramel Crunch': 'Decadent chocolate ice cream with ribbons of caramel and crunchy pieces.',
+    'Double Choc': 'For chocolate lovers - rich chocolate ice cream with chocolate chunks.',
+    'Eton Mess': 'Strawberries, meringue pieces, and cream combined in this British classic.',
+    'Honeycomb': 'Sweet vanilla ice cream packed with crunchy honeycomb pieces.',
+    'Lemon Crunch': 'Zesty lemon ice cream with biscuit crunch for a refreshing citrus treat.',
+    'Lemon Meringue': 'Tangy lemon ice cream swirled with sweet meringue pieces.',
+    'Malty Munch': 'Malted milk flavor with chocolate-covered malt balls.',
+    'Mango Swirl': 'Creamy vanilla ice cream with ribbons of sweet mango.',
+    'Maple & Walnut': 'Rich maple syrup flavor combined with crunchy walnut pieces.',
+    'Mint Choc Chunk': 'Refreshing mint ice cream loaded with dark chocolate chunks.',
+    'Nuttytella': 'Hazelnut chocolate spread flavor with hazelnut pieces throughout.',
+    'Oreo': 'Cookies and cream ice cream packed with Oreo cookie pieces.',
+    'Pistachio': 'Authentic pistachio flavor with real pistachio pieces.',
+    'Raspberry (Ice Cream)': 'Sweet and tart raspberry ice cream bursting with fruit flavor.',
+    'Raspberry Pavlova': 'Raspberry ice cream with meringue pieces inspired by the classic dessert.',
+    'Rum & Raisin': 'Traditional rum-soaked raisins in rich vanilla ice cream.',
+    'Salted Caramel': 'Sweet caramel with a hint of sea salt for the perfect balance.',
+    'Strawberry': 'Classic strawberry ice cream made with real strawberry pieces.',
+    'Strawberry Cheesecake': 'Creamy cheesecake ice cream with strawberry swirl and biscuit pieces.',
+    'Summer Fruits': 'A medley of summer berries in creamy vanilla ice cream.',
+    'Toffee Fudge': 'Rich toffee ice cream with chunks of fudge pieces.',
+    'Turkish Delight': 'Rose-flavored ice cream with Turkish delight pieces.',
+    'White Chocolate Avalanche': 'Smooth white chocolate ice cream with chocolate flakes.',
+    'White Choc & Honeycomb': 'White chocolate ice cream with crunchy honeycomb pieces.',
+    'White Choc & Raspberry': 'White chocolate and raspberry create a fruity and indulgent combination.',
+    '26 Miles': 'A special flavor celebrating endurance with caramel and chocolate.',
+    'Blackcurrant (Sorbet)': 'Refreshing blackcurrant sorbet made with real fruit.',
+    'Lemon (Sorbet)': 'Zesty lemon sorbet perfect for cleansing the palate.',
+    'Mango (Sorbet)': 'Tropical mango sorbet bursting with exotic fruit flavor.',
+    'Orange (Sorbet)': 'Refreshing orange sorbet with natural citrus tang.',
+    'Passionfruit (Sorbet)': 'Exotic passionfruit creates a tart and tropical sorbet.',
+    'Raspberry (Sorbet)': 'Vibrant raspberry sorbet made with premium fruit.',
+    'Vanilla Coconut': 'Creamy vanilla flavor in a smooth coconut base for a dairy-free delight.',
+    'Chocolate Coconut': 'Rich chocolate flavor in a creamy coconut base.',
+    'Caramel Coconut': 'Sweet caramel in a smooth coconut base.',
+    'Strawberry Coconut': 'Fresh strawberry flavor combined with creamy coconut.',
+    'Honeycomb Coconut': 'Crunchy honeycomb pieces in a sweet coconut base.',
+    'Vanilla (Milk Maid)': 'Light and refreshing vanilla with a unique milk formulation.',
+    'Bubblegum (Milk Maid)': 'Fun bubblegum flavor that kids and adults love.'
+};
+
+// Image filename mapping based on actual files
+const imageMapping = {
+    // Normal ice creams
+    'Clotted Cream Vanilla': 'Icecream Product Shots/Normal/cottage vanilla (normal).png',
+    'Dairy Vanilla': 'Icecream Product Shots/Normal/cottage vanilla (normal).png',
+    'Banana': 'Icecream Product Shots/Normal/banana normal.png',
+    'Banoffee': 'Icecream Product Shots/Normal/BANOFFEE (normal).png',
+    'Biscoff': 'Icecream Product Shots/Normal/Biscoff (normal).png',
+    'Black & Blue': 'Icecream Product Shots/Normal/Black and Blue (normal).png',
+    'Blackberry Crumble': 'Icecream Product Shots/Normal/Blackberry Crumble (normal).png',
+    'Black Cherry': 'Icecream Product Shots/Normal/BlackCurrent (normal).png',
+    'Blackcurrant (Ice Cream)': 'Icecream Product Shots/Normal/BlackCurrent (normal).png',
+    'Candyfloss': 'Icecream Product Shots/Normal/Candyfloss (normal).png',
+    'Caramel Crunch': 'Icecream Product Shots/Normal/caramel crunch.png',
+    'Caffe Latte': 'Icecream Product Shots/Normal/Caffe Latte.png',
+    'Cappuccino Crunch': 'Icecream Product Shots/Normal/Cappuccino Crunch.png',
+    'Cherry Bakewell': 'Icecream Product Shots/Normal/Cherry Bakewell.png',
+    'Chocolate Orange': 'Icecream Product Shots/Normal/chocolate orange.png',
+    'Chunky Ginger': 'Icecream Product Shots/Normal/chunky ginger.png',
+    'Coffee Mocha': 'Icecream Product Shots/Normal/Coffee Mocha.png',
+    'Coconut Cream': 'Icecream Product Shots/Normal/coconut cream.png',
+    'Cookie Dough': 'Icecream Product Shots/Normal/cookie dough.png',
+    'Chocolate Caramel Crunch': 'Icecream Product Shots/Normal/chocolate caramel crunch.png',
+    'Double Choc': 'Icecream Product Shots/Normal/DOUBLE CHOC.png',
+    'Eton Mess': 'Icecream Product Shots/Normal/Eton Mess.png',
+    'Honeycomb': 'Icecream Product Shots/Normal/honeycomb.png',
+    'Lemon Crunch': 'Icecream Product Shots/Normal/lemon crunch.png',
+    'Lemon Meringue': 'Icecream Product Shots/Normal/lemon meringue.png',
+    'Malty Munch': 'Icecream Product Shots/Normal/malty munch.png',
+    'Mango Swirl': 'Icecream Product Shots/Normal/mango swirl.png',
+    'Maple & Walnut': 'Icecream Product Shots/Normal/maple and walnut.png',
+    'Mint Choc Chunk': 'Icecream Product Shots/Normal/mint choc chunk.png',
+    'Nuttytella': 'Icecream Product Shots/Normal/nuttytella.png',
+    'Oreo': 'Icecream Product Shots/Normal/oreo.png',
+    'Pistachio': 'Icecream Product Shots/Normal/pistachio.png',
+    'Raspberry (Ice Cream)': 'Icecream Product Shots/Normal/raspberry.png',
+    'Raspberry Pavlova': 'Icecream Product Shots/Normal/raspberry pavlova.png',
+    'Rum & Raisin': 'Icecream Product Shots/Normal/rum and raisin.png',
+    'Salted Caramel': 'Icecream Product Shots/Normal/salted caramel.png',
+    'Strawberry': 'Icecream Product Shots/Normal/Strawberry.png',
+    'Strawberry Cheesecake': 'Icecream Product Shots/Normal/Strawberry Cheesecake.png',
+    'Summer Fruits': 'Icecream Product Shots/Normal/Summer Fruits.png',
+    'Toffee Fudge': 'Icecream Product Shots/Normal/Toffee fudge.png',
+    'Turkish Delight': 'Icecream Product Shots/Normal/TURKISH DELIGHT.png',
+    'White Chocolate Avalanche': 'Icecream Product Shots/Normal/WHITE CHOCOLATE AVALANCHE.png',
+    'White Choc & Honeycomb': 'Icecream Product Shots/Normal/WHITE CHOC & HONEYCOMB.png',
+    'White Choc & Raspberry': 'Icecream Product Shots/Normal/WHITE CHOC & RASPBERRY.png',
+    '26 Miles': 'Icecream Product Shots/Normal/26 MILES.png',
+
+    // Sorbets
+    'Blackcurrant (Sorbet)': 'Icecream Product Shots/Sorbets/BlackCurrent.png',
+    'Lemon (Sorbet)': 'Icecream Product Shots/Sorbets/lemon.png',
+    'Mango (Sorbet)': 'Icecream Product Shots/Sorbets/mango.png',
+    'Orange (Sorbet)': 'Icecream Product Shots/Sorbets/orange.png',
+    'Passionfruit (Sorbet)': 'Icecream Product Shots/Sorbets/passion fruit.png',
+    'Raspberry (Sorbet)': 'Icecream Product Shots/Sorbets/raspberry.png',
+
+    // Plant-based
+    'Vanilla Coconut': 'Icecream Product Shots/Plant-Based/Vanilla Coconut.png',
+    'Chocolate Coconut': 'Icecream Product Shots/Plant-Based/Chocolate Coconut.png',
+    'Caramel Coconut': 'Icecream Product Shots/Plant-Based/CARAMEL COCONUT.png',
+    'Strawberry Coconut': 'Icecream Product Shots/Plant-Based/STRAWBERRY COCONUT.png',
+    'Honeycomb Coconut': 'Icecream Product Shots/Plant-Based/HONEYCOMB COCONUT.png',
+
+    // Milk Maid
+    'Vanilla (Milk Maid)': 'Icecream Product Shots/Milk Maid/Vanilla (milk maid).png',
+    'Bubblegum (Milk Maid)': 'Icecream Product Shots/Milk Maid/Bubblegum (milk maid).png'
+};
 
 // Function to parse CSV
 async function loadIceCreamData() {
     try {
-        const response = await fetch('ice cream database.csv');
+        const response = await fetch('Ice_Cream_Database.csv');
         const csvText = await response.text();
         const lines = csvText.split('\n');
-        const headers = lines[0].split(',');
 
         iceCreamProducts = [];
 
@@ -117,12 +227,36 @@ async function loadIceCreamData() {
             const line = lines[i].trim();
             if (!line) continue;
 
-            const values = line.split(',');
+            // Parse CSV properly handling quoted fields
+            const values = parseCSVLine(line);
+
             const product = {
                 name: values[0],
                 type: values[1],
                 award: values[2],
-                sizes: values[3] ? values[3].replace(/[\[\]']/g, '').split(', ').join(', ') : ''
+                sizes: values[3] ? values[3].replace(/[\[\]']/g, '').split(', ') : [],
+                allergies: {
+                    dairy: values[11] === 'Y',
+                    eggs: values[12] === 'Y',
+                    gluten: values[13] === 'Y',
+                    nuts: values[14] === 'Y',
+                    oats: values[15] === 'Y',
+                    peanuts: values[16] === 'Y',
+                    soya: values[17] === 'Y',
+                    sulphites: values[18] === 'Y',
+                    sulphurDioxide: values[19] === 'Y',
+                    wheat: values[20] === 'Y',
+                    other: values[21]
+                },
+                sizeAvailability: {
+                    '120ml': values[4] === 'True',
+                    '1ltr': values[5] === 'True',
+                    '2ltr': values[6] === 'True',
+                    '2.4ltr': values[7] === 'True',
+                    '4ltr': values[8] === 'True',
+                    '4.5ltr': values[9] === 'True',
+                    '10ltr': values[10] === 'True'
+                }
             };
 
             if (product.name) {
@@ -136,71 +270,26 @@ async function loadIceCreamData() {
     }
 }
 
-// Function to get image filename from product name
-function getImageFilename(name, type) {
-    // Map product names to image filenames
-    const imageMap = {
-        'Clotted Cream Vanilla': 'Clotted Cream Vanilla.avif',
-        'Dairy Vanilla': 'dairy vanilla.avif',
-        'Banana': 'banana.avif',
-        'Banoffee': 'banoffe.avif',
-        'Biscoff': 'biscoff.avif',
-        'Black & Blue': 'black & blue.avif',
-        'Blackberry Crumble': 'BLACKBERRY CRUMBLE.avif',
-        'Black Cherry': 'BLACK CHERRY.avif',
-        'Blackcurrant (Ice Cream)': 'BLACKCURRANT.avif',
-        'Candyfloss': 'CANDYFLOSS.avif',
-        'Caramel Crunch': 'CARAMEL CRUNCH.avif',
-        'Caffe Latte': 'CAFFE LATTE.avif',
-        'Cappuccino Crunch': 'CAPPUCCINO CRUNCH.avif',
-        'Cherry Bakewell': 'CHERRY BAKEWELL.avif',
-        'Chocolate Orange': 'CHOCOLATE ORANGE.avif',
-        'Chunky Ginger': 'CHUNKY GINGER.avif',
-        'Coffee Mocha': 'COFFEE MOCHA.avif',
-        'Coconut Cream': 'COCONUT CREAM.avif',
-        'Cookie Dough': 'COOKIE DOUGH.avif',
-        'Chocolate Caramel Crunch': 'CHOCOLATE CARAMEL CRUNCH.avif',
-        'Double Choc': 'DOUBLE CHOC.avif',
-        'Eton Mess': 'ETON MESS.avif',
-        'Honeycomb': 'HONEYCOMB.avif',
-        'Lemon Crunch': 'LEMON CRUNCH.avif',
-        'Lemon Meringue': 'LEMON MERINGUE.avif',
-        'Malty Munch': 'MALTY MUNCH.avif',
-        'Mango Swirl': 'MANGO SWIRL.avif',
-        'Maple & Walnut': 'MAPLE & WALNUT.avif',
-        'Mint Choc Chunk': 'MINT CHOC CHUNK.avif',
-        'Nuttytella': 'NUTTYTELLA.avif',
-        'Oreo': 'OREO.avif',
-        'Pistachio': 'PISTACHIO.avif',
-        'Raspberry (Ice Cream)': 'RASPBERRY.avif',
-        'Raspberry Pavlova': 'RASPBERRY PAVLOVA.avif',
-        'Rum & Raisin': 'RUM & RAISIN.avif',
-        'Salted Caramel': 'SALTED CARAMEL.avif',
-        'Strawberry': 'STRAWBERRY.avif',
-        'Strawberry Cheesecake': 'STRAWBERRY CHEESECAKE.avif',
-        'Summer Fruits': 'SUMMER FRUITS.avif',
-        'Toffee Fudge': 'TOFFEE FUDGE.avif',
-        'Turkish Delight': 'TURKISH DELIGHT.avif',
-        'White Chocolate Avalanche': 'WHITE CHOCOLATE AVALANCHE.avif',
-        'White Choc & Honeycomb': 'WHITE CHOC & HONEYCOMB.avif',
-        'White Choc & Raspberry': 'WHITE CHOC & RASPBERRY.avif',
-        '26 Miles': '26 MILES.avif',
-        'Blackcurrant (Sorbet)': 'Blackcurrant Sorbet.avif',
-        'Lemon (Sorbet)': 'lemon sorbet.avif',
-        'Mango (Sorbet)': 'mango sorbet.avif',
-        'Orange (Sorbet)': 'orange sorbet.avif',
-        'Passionfruit (Sorbet)': 'passion fruit sorbet.avif',
-        'Raspberry (Sorbet)': 'raspberry sorbet.avif',
-        'Vanilla Coconut': 'plant based-Vanilla Coconut .avif',
-        'Chocolate Coconut': 'plant based Chocolate Coconut Blob.avif',
-        'Caramel Coconut': 'plant based - Caramel Coconut.avif',
-        'Strawberry Coconut': 'plant based - Strawberry Coconut.avif',
-        'Honeycomb Coconut': 'plant based- Honeycomb Coconut.avif',
-        'Vanilla (Milk Maid)': 'Milk Maid Vanilla.avif',
-        'Bubblegum (Milk Maid)': 'Milk Made BUBBLEGUM.avif'
-    };
+function parseCSVLine(line) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
 
-    return imageMap[name] || 'default.avif';
+    for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+
+        if (char === '"') {
+            inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+            result.push(current.trim());
+            current = '';
+        } else {
+            current += char;
+        }
+    }
+    result.push(current.trim());
+
+    return result;
 }
 
 // Function to display products
@@ -272,22 +361,124 @@ function createProductCard(product) {
     const card = document.createElement('div');
     card.className = 'product-card';
 
-    const imageFilename = getImageFilename(product.name, product.type);
+    const imageFilename = imageMapping[product.name] || 'Existing Poduct Shots/background icecream image.avif';
 
     card.innerHTML = `
         <div class="product-image">
-            <img src="Ice Cream Flavours/${imageFilename}" alt="${product.name}" onerror="this.src='Existing Poduct Shots/background icecream image.avif'">
+            <img src="${imageFilename}" alt="${product.name}" onerror="this.src='Existing Poduct Shots/background icecream image.avif'">
         </div>
         <div class="product-info">
-            <span class="product-type">${product.type}</span>
             <h4>${product.name}</h4>
-            ${product.award ? `<div class="product-award">🏆 ${product.award}</div>` : ''}
-            <div class="product-sizes">Available sizes: ${product.sizes || 'Various sizes'}</div>
+            <button class="see-button" data-product="${product.name}">SEE</button>
         </div>
     `;
 
+    // Add click event to SEE button
+    const seeButton = card.querySelector('.see-button');
+    seeButton.addEventListener('click', () => openProductModal(product));
+
     return card;
 }
+
+// Modal functionality
+function openProductModal(product) {
+    const modal = document.getElementById('productModal');
+    const modalImage = document.getElementById('modalProductImage');
+    const modalName = document.getElementById('modalProductName');
+    const modalAward = document.getElementById('modalProductAward');
+    const modalDescription = document.getElementById('modalProductDescription');
+    const modalSizes = document.getElementById('modalProductSizes');
+    const modalAllergies = document.getElementById('modalProductAllergies');
+    const modalAllergySection = document.getElementById('modalAllergySection');
+
+    // Set product image
+    const imageFilename = imageMapping[product.name] || 'Existing Poduct Shots/background icecream image.avif';
+    modalImage.src = imageFilename;
+    modalImage.alt = product.name;
+
+    // Set product name
+    modalName.textContent = product.name;
+
+    // Set award if exists
+    if (product.award) {
+        modalAward.textContent = `🏆 ${product.award}`;
+        modalAward.style.display = 'block';
+    } else {
+        modalAward.style.display = 'none';
+    }
+
+    // Set description
+    modalDescription.textContent = productDescriptions[product.name] || 'A delicious ice cream flavor.';
+
+    // Set sizes
+    const availableSizes = product.sizes.filter(size => size.trim() !== '');
+    modalSizes.textContent = availableSizes.length > 0 ? availableSizes.join(', ') : 'Various sizes available';
+
+    // Set allergies
+    modalAllergies.innerHTML = '';
+    const allergyList = [];
+
+    if (product.allergies.dairy) allergyList.push('Dairy');
+    if (product.allergies.eggs) allergyList.push('Eggs');
+    if (product.allergies.gluten) allergyList.push('Gluten');
+    if (product.allergies.nuts) allergyList.push('Nuts');
+    if (product.allergies.oats) allergyList.push('Oats');
+    if (product.allergies.peanuts) allergyList.push('Peanuts');
+    if (product.allergies.soya) allergyList.push('Soya');
+    if (product.allergies.sulphites) allergyList.push('Sulphites');
+    if (product.allergies.sulphurDioxide) allergyList.push('Sulphur Dioxide');
+    if (product.allergies.wheat) allergyList.push('Wheat');
+
+    if (allergyList.length > 0) {
+        allergyList.forEach(allergy => {
+            const li = document.createElement('li');
+            li.textContent = `Contains ${allergy}`;
+            modalAllergies.appendChild(li);
+        });
+    } else {
+        const li = document.createElement('li');
+        li.textContent = 'No major allergens';
+        modalAllergies.appendChild(li);
+    }
+
+    if (product.allergies.other && product.allergies.other !== '*') {
+        const li = document.createElement('li');
+        li.textContent = product.allergies.other;
+        modalAllergies.appendChild(li);
+    }
+
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProductModal() {
+    const modal = document.getElementById('productModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Modal event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    const modalClose = document.getElementById('modalClose');
+    const modal = document.getElementById('productModal');
+
+    modalClose.addEventListener('click', closeProductModal);
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeProductModal();
+        }
+    });
+
+    // Close modal on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeProductModal();
+        }
+    });
+});
 
 // Filter button functionality
 document.addEventListener('DOMContentLoaded', () => {
