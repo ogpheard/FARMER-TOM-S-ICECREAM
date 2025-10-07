@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <parameter name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product - Farmer Tom's Ice Cream</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="product-detail-body">
+    <!-- Full Screen Product Detail -->
+    <div class="product-detail-page">
+        <!-- Back Button -->
+        <a href="products.html" class="back-button">&larr;</a>
+
+        <!-- Product Content -->
+        <div class="product-detail-container">
+            <!-- Left: Product Image -->
+            <div class="product-detail-image">
+                <img id="productImage" src="" alt="">
+            </div>
+
+            <!-- Right: Product Information -->
+            <div class="product-detail-info">
+                <h1 id="productName" class="product-detail-title"></h1>
+                <div id="productAward" class="product-detail-award"></div>
+
+                <p id="productDescription" class="product-detail-description"></p>
+
+                <div class="product-detail-section">
+                    <h3>Available Sizes</h3>
+                    <div id="productSizes" class="product-sizes-list"></div>
+                </div>
+
+                <div class="product-detail-section">
+                    <h3>Allergen Information</h3>
+                    <div id="productAllergens" class="allergen-icons"></div>
+                    <a href="allergens.pdf" target="_blank" class="allergen-pdf-link">View detailed allergen information</a>
+                </div>
+
+                <button class="find-shop-button">FIND A SHOP</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="product.js"></script>
+</body>
+</html>
