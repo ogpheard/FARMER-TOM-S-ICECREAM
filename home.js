@@ -2,18 +2,30 @@
 let lastScroll = 0;
 const nav = document.querySelector('.nav');
 const darkeningOverlay = document.querySelector('.scroll-darkening-overlay');
+const heroVideo = document.querySelector('.hero-video');
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     const windowHeight = window.innerHeight;
 
-    // Navigation effect
+    // Show navigation only when scrolling down from hero
     if (currentScroll > 100) {
-        nav.style.padding = '1rem 0';
-        nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+        nav.classList.add('visible');
     } else {
-        nav.style.padding = '1.5rem 0';
-        nav.style.boxShadow = 'none';
+        nav.classList.remove('visible');
+    }
+
+    // Video darkening effect - darken as you scroll down
+    if (currentScroll < windowHeight) {
+        const scrollProgress = currentScroll / windowHeight;
+        const brightness = 1 - (scrollProgress * 0.6); // Darken up to 60%
+        if (heroVideo) {
+            heroVideo.style.filter = `brightness(${brightness})`;
+        }
+    } else {
+        if (heroVideo) {
+            heroVideo.style.filter = 'brightness(0.4)';
+        }
     }
 
     // Darkening overlay effect - starts after hero section

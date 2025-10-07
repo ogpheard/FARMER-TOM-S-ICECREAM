@@ -222,13 +222,50 @@ function createProductCard(product) {
     const imageFilename = imageMapping[product.name] || 'Existing Poduct Shots/background icecream image.avif';
     const productSlug = product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
+    // Parse sizes
+    const sizes = JSON.parse(product.sizes.replace(/'/g, '"'));
+
+    // Get allergens
+    const allergens = [];
+    if (product.allergens) {
+        if (product.allergens.dairy === 'Y') allergens.push('Dairy');
+        if (product.allergens.eggs === 'Y') allergens.push('Eggs');
+        if (product.allergens.gluten === 'Y') allergens.push('Gluten');
+        if (product.allergens.nuts === 'Y') allergens.push('Nuts');
+        if (product.allergens.peanuts === 'Y') allergens.push('Peanuts');
+        if (product.allergens.soya === 'Y') allergens.push('Soya');
+        if (product.allergens.wheat === 'Y') allergens.push('Wheat');
+    }
+
+    const allergensText = allergens.length > 0 ? allergens.join(', ') : 'No major allergens';
+
     card.innerHTML = `
+        <div class="product-card-header">
+            <h4>${product.name}</h4>
+        </div>
         <div class="product-image">
             <img src="${imageFilename}" alt="${product.name}" onerror="this.src='Existing Poduct Shots/background icecream image.avif'">
         </div>
         <div class="product-info">
-            <h4>${product.name}</h4>
             <a href="product.html?id=${productSlug}" class="see-button">SEE</a>
+        </div>
+        <div class="product-hover-details">
+            <div class="hover-detail-section">
+                <h5>Available Sizes</h5>
+                <div class="hover-sizes">
+                    ${sizes.map(size => `<span class="hover-size-badge">${size}</span>`).join('')}
+                </div>
+            </div>
+            <div class="hover-detail-section">
+                <h5>Allergens</h5>
+                <div class="hover-allergens">
+                    <span class="hover-allergen">${allergensText}</span>
+                </div>
+            </div>
+            ${product.award ? `<div class="hover-detail-section">
+                <div class="hover-award">🏆 ${product.award}</div>
+            </div>` : ''}
+            <a href="product.html?id=${productSlug}" class="see-button" style="margin-top: 1rem;">SEE MORE</a>
         </div>
     `;
 
