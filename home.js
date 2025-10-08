@@ -1,3 +1,103 @@
+// Load ice cream data
+let iceCreamData = [];
+
+async function loadIceCreamData() {
+    try {
+        const response = await fetch('ice_cream_data');
+        iceCreamData = await response.json();
+        populateShowcase();
+        populateNewFor2025();
+    } catch (error) {
+        console.error('Error loading ice cream data:', error);
+    }
+}
+
+// Map product names to image filenames
+function getImageFilename(product) {
+    const imageName = product.name.replace(/\s*\([^)]*\)/g, '');
+    let folder = '';
+
+    if (product.type === 'Normal') {
+        folder = 'Normal';
+    } else if (product.type === 'Milk Maid') {
+        folder = 'Milk Maid';
+    } else if (product.type.includes('Plant-based') || product.type.includes('Coconut')) {
+        folder = 'Plant-Based';
+    } else if (product.type === 'Sorbet') {
+        folder = 'Sorbets';
+    }
+
+    return `Icecream Product Shots/${folder}/${imageName}.png`;
+}
+
+// Populate showcase with featured products
+function populateShowcase() {
+    const showcaseContainer = document.getElementById('showcaseContainer');
+    if (!showcaseContainer) return;
+
+    // Get 8 random award-winning products
+    const featuredProducts = iceCreamData
+        .filter(p => p.award)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 8);
+
+    showcaseContainer.innerHTML = featuredProducts.map(product => `
+        <div class="showcase-item">
+            <a href="product.html?name=${encodeURIComponent(product.name)}">
+                <div class="showcase-image">
+                    <img src="${getImageFilename(product)}" alt="${product.name}">
+                </div>
+                <h3>${product.name}</h3>
+            </a>
+        </div>
+    `).join('');
+}
+
+// Populate New for 2025 section
+function populateNewFor2025() {
+    const newProductsGrid = document.getElementById('newProducts');
+    if (!newProductsGrid) return;
+
+    // Select 3 random products as "new for 2025"
+    const newProducts = iceCreamData
+        .filter(p => p.type === 'Normal')
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 3);
+
+    newProductsGrid.innerHTML = newProducts.map(product => `
+        <div class="new-product-card">
+            <a href="product.html?name=${encodeURIComponent(product.name)}">
+                <div class="new-product-image">
+                    <img src="${getImageFilename(product)}" alt="${product.name}">
+                </div>
+                <div class="new-product-info">
+                    <h3>${product.name}</h3>
+                    ${product.award ? `<p class="award-badge">${product.award}</p>` : ''}
+                </div>
+            </a>
+        </div>
+    `).join('');
+}
+
+// Showcase scroll functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const scrollLeft = document.querySelector('.scroll-left');
+    const scrollRight = document.querySelector('.scroll-right');
+    const showcaseContainer = document.getElementById('showcaseContainer');
+
+    if (scrollLeft && scrollRight && showcaseContainer) {
+        scrollLeft.addEventListener('click', () => {
+            showcaseContainer.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+
+        scrollRight.addEventListener('click', () => {
+            showcaseContainer.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+    }
+
+    loadIceCreamData();
+});
+
 // Navigation scroll effect and darkening overlay
 let lastScroll = 0;
 const nav = document.querySelector('.nav');

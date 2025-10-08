@@ -35,67 +35,168 @@
     <!-- Scroll Darkening Overlay -->
     <div class="scroll-darkening-overlay"></div>
 
-    <!-- Ice Cream Categories Section -->
+    <!-- Wavy Divider -->
+    <svg class="wavy-divider" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,50 C300,100 600,0 900,50 C1050,75 1150,50 1200,50 L1200,120 L0,120 Z" fill="#f5f3ed"></path>
+    </svg>
+
+    <!-- Featured Ice Creams Showcase -->
+    <section class="showcase-section">
+        <div class="section-container">
+            <h2 class="section-title">LATEST FROM YEO...</h2>
+            <div class="showcase-scroll">
+                <button class="scroll-arrow scroll-left" aria-label="Scroll left">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <div class="showcase-container" id="showcaseContainer">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                <button class="scroll-arrow scroll-right" aria-label="Scroll right">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wavy Divider -->
+    <svg class="wavy-divider" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,50 C300,0 600,100 900,50 C1050,25 1150,50 1200,50 L1200,0 L0,0 Z" fill="#f5f3ed"></path>
+    </svg>
+
+    <!-- New for 2025 Section -->
+    <section class="new-for-2025-section">
+        <div class="section-container">
+            <h2 class="section-title">NEW FOR 2025</h2>
+            <p class="section-subtitle">Discover our exciting new flavours crafted this year</p>
+            <div class="new-products-grid" id="newProducts">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Wavy Divider -->
+    <svg class="wavy-divider wavy-green" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,50 C300,100 600,0 900,50 C1050,75 1150,50 1200,50 L1200,120 L0,120 Z" fill="#1a4d2e"></path>
+    </svg>
+
+    <!-- About Us Section -->
+    <section id="story" class="about-section">
+        <div class="section-container">
+            <h2 class="section-title white-text">ABOUT US</h2>
+            <div class="about-content">
+                <p class="about-text">At Farmer Tom's, we believe exceptional ice cream starts with exceptional ingredients. Every batch is handcrafted using fresh milk from our own herd and local farms, creating flavors that honor tradition while embracing creativity.</p>
+                <p class="about-text">Our commitment to quality and sustainability has earned recognition across the industry, but our greatest reward is the joy we bring to every scoop. From our family farm to your table, we take pride in every step of the journey.</p>
+                <div class="about-buttons">
+                    <a href="#herd" class="about-btn">OUR HERD</a>
+                    <a href="#factory" class="about-btn">OUR FACTORY</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wavy Divider -->
+    <svg class="wavy-divider" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,50 C300,0 600,100 900,50 C1050,25 1150,50 1200,50 L1200,0 L0,0 Z" fill="#1a4d2e"></path>
+    </svg>
+
+    <!-- Meet the Team Section -->
+    <section class="team-section">
+        <div class="section-container">
+            <h2 class="section-title">MEET THE TEAM</h2>
+            <p class="section-subtitle">The passionate people behind Farmer Tom's Ice Cream</p>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop" alt="Team Member">
+                    </div>
+                    <h3>Tom</h3>
+                    <p>Founder & Farmer</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop" alt="Team Member">
+                    </div>
+                    <h3>Sarah</h3>
+                    <p>Head Ice Cream Maker</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop" alt="Team Member">
+                    </div>
+                    <h3>James</h3>
+                    <p>Production Manager</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop" alt="Team Member">
+                    </div>
+                    <h3>Emily</h3>
+                    <p>Quality Control</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wavy Divider -->
+    <svg class="wavy-divider wavy-green-alt" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,50 C300,100 600,0 900,50 C1050,75 1150,50 1200,50 L1200,120 L0,120 Z" fill="#2d5f3f"></path>
+    </svg>
+
+    <!-- Our Collections Section -->
     <section class="categories-section">
         <div class="section-container">
-            <h2 class="section-title">Our Collections</h2>
+            <h2 class="section-title white-text">OUR COLLECTIONS</h2>
             <div class="categories-grid">
-                <div class="category-card">
+                <div class="category-card-home">
                     <div class="category-image">
                         <img src="Ice Cream Section Logos:images/Dairy.png" alt="Normal Ice Cream">
                     </div>
                     <h3>Classic Ice Cream</h3>
                     <p>Our traditional dairy ice cream collection featuring timeless favorites and innovative flavors</p>
-                    <a href="products.html?category=normal" class="discover-button">DISCOVER</a>
+                    <a href="products.html?category=normal" class="discover-button-home">DISCOVER</a>
                 </div>
-                <div class="category-card">
+                <div class="category-card-home">
                     <div class="category-image">
                         <img src="Ice Cream Section Logos:images/Milk Maid.png" alt="Milk Maid">
                     </div>
                     <h3>Milk Maid</h3>
                     <p>Specially crafted with unique milk formulation for a lighter, refreshing taste</p>
-                    <a href="products.html?category=milkmaid" class="discover-button">DISCOVER</a>
+                    <a href="products.html?category=milkmaid" class="discover-button-home">DISCOVER</a>
                 </div>
-                <div class="category-card">
+                <div class="category-card-home">
                     <div class="category-image">
                         <img src="Ice Cream Section Logos:images/sorbet.png" alt="Sorbet">
                     </div>
                     <h3>Sorbets</h3>
                     <p>Refreshing fruit-based sorbets bursting with natural flavors</p>
-                    <a href="products.html?category=sorbet" class="discover-button">DISCOVER</a>
+                    <a href="products.html?category=sorbet" class="discover-button-home">DISCOVER</a>
                 </div>
-                <div class="category-card">
+                <div class="category-card-home">
                     <div class="category-image">
                         <img src="Ice Cream Section Logos:images/Coconut.png" alt="Coconut Plant-Based">
                     </div>
                     <h3>Coconut Plant-Based</h3>
                     <p>Delicious dairy-free alternatives made with creamy coconut for everyone to enjoy</p>
-                    <a href="products.html?category=coconut" class="discover-button">DISCOVER</a>
+                    <a href="products.html?category=coconut" class="discover-button-home">DISCOVER</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Story Section -->
-    <section id="story" class="story-section">
-        <div class="section-container">
-            <div class="content-grid">
-                <div class="content-text">
-                    <h2>Crafted with care</h2>
-                    <p>At Farmer Tom's, we believe exceptional ice cream starts with exceptional ingredients. Every batch is handcrafted using fresh milk from local farms, creating flavors that honor tradition while embracing creativity.</p>
-                    <p>Our commitment to quality has earned recognition across the industry, but our greatest reward is the joy we bring to every scoop.</p>
-                </div>
-                <div class="content-image">
-                    <img src="Existing Poduct Shots/background icecream image.avif" alt="Ice Cream Making Process">
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Wavy Divider -->
+    <svg class="wavy-divider" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,50 C300,0 600,100 900,50 C1050,25 1150,50 1200,50 L1200,0 L0,0 Z" fill="#2d5f3f"></path>
+    </svg>
 
     <!-- Awards Section -->
     <section id="awards" class="awards-section">
         <div class="section-container">
-            <h2 class="section-title">Recognition</h2>
+            <h2 class="section-title white-text">AWARDS & RECOGNITION</h2>
+            <p class="section-subtitle white-text">Celebrating our commitment to quality and taste</p>
             <div class="awards-grid">
                 <div class="award-item">
                     <img src="Existing Poduct Shots/TOTW Gold award image.avif" alt="Taste of the West Gold Award">
@@ -110,32 +211,10 @@
         </div>
     </section>
 
-    <!-- Delivery Section -->
-    <section class="delivery-section">
-        <div class="section-container">
-            <div class="content-grid reverse">
-                <div class="content-image">
-                    <img src="Existing Poduct Shots/Delivery Area Map.avif" alt="Delivery Area">
-                </div>
-                <div class="content-text">
-                    <h2>Delivered fresh</h2>
-                    <p>We deliver our artisan ice cream throughout the region, ensuring every tub arrives in perfect condition.</p>
-                    <p>Our insulated packaging keeps your ice cream at the ideal temperature from our farm to your door.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="section-container">
-            <div class="contact-content">
-                <h2>Let's connect</h2>
-                <p>Ready to experience exceptional ice cream?</p>
-                <a href="mailto:hello@farmertoms.com" class="cta-button">Get in Touch</a>
-            </div>
-        </div>
-    </section>
+    <!-- Wavy Divider -->
+    <svg class="wavy-divider" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,50 C300,0 600,100 900,50 C1050,25 1150,50 1200,50 L1200,0 L0,0 Z" fill="#2d5f3f"></path>
+    </svg>
 
     <!-- Footer -->
     <footer class="footer">

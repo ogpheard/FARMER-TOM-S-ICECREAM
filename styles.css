@@ -1258,3 +1258,449 @@ a {
         height: 24px;
     }
 }
+
+/* ==================== */
+/* HOME PAGE REDESIGN */
+/* ==================== */
+
+/* Wavy Dividers */
+.wavy-divider {
+    width: 100%;
+    height: 80px;
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.wavy-green path {
+    fill: #1a4d2e;
+}
+
+.wavy-green-alt path {
+    fill: #2d5f3f;
+}
+
+/* Showcase Section */
+.showcase-section {
+    background: #f5f3ed;
+    padding: 6rem 0;
+    position: relative;
+}
+
+.showcase-section .section-title {
+    font-family: 'AdLib', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #2d5f3f;
+    letter-spacing: 0.02em;
+}
+
+.showcase-scroll {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4rem;
+}
+
+.showcase-container {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 1rem 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.showcase-container::-webkit-scrollbar {
+    display: none;
+}
+
+.showcase-item {
+    flex: 0 0 250px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.showcase-item:hover {
+    transform: translateY(-10px);
+}
+
+.showcase-image {
+    background: #fff;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.showcase-image img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.showcase-item h3 {
+    font-size: 1.1rem;
+    color: #2d5f3f;
+    margin-top: 1rem;
+}
+
+.scroll-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #2d5f3f;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    color: #2d5f3f;
+}
+
+.scroll-arrow:hover {
+    background: #2d5f3f;
+    color: #fff;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.scroll-left {
+    left: 0;
+}
+
+.scroll-right {
+    right: 0;
+}
+
+/* New for 2025 Section */
+.new-for-2025-section {
+    background: #f5f3ed;
+    padding: 6rem 0;
+}
+
+.new-for-2025-section .section-title {
+    font-family: 'AdLib', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #2d5f3f;
+    letter-spacing: 0.02em;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 3rem;
+}
+
+.new-products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.new-product-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.new-product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.new-product-image {
+    background: #f5f3ed;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.new-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.new-product-info {
+    padding: 2rem;
+    text-align: center;
+}
+
+.new-product-info h3 {
+    font-size: 1.5rem;
+    color: #2d5f3f;
+    margin-bottom: 0.5rem;
+}
+
+.award-badge {
+    display: inline-block;
+    background: #f4a261;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+/* About Section */
+.about-section {
+    background: #1a4d2e;
+    padding: 6rem 0;
+    color: #fff;
+}
+
+.about-section .section-title {
+    font-family: 'AdLib', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #fff;
+    letter-spacing: 0.02em;
+}
+
+.about-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 2rem;
+}
+
+.about-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: #f5f3ed;
+}
+
+.about-buttons {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.about-btn {
+    background: transparent;
+    border: 2px solid #f5f3ed;
+    color: #f5f3ed;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-family: 'AdLib', sans-serif;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.about-btn:hover {
+    background: #f5f3ed;
+    color: #1a4d2e;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(245, 243, 237, 0.3);
+}
+
+/* Team Section */
+.team-section {
+    background: #f5f3ed;
+    padding: 6rem 0;
+}
+
+.team-section .section-title {
+    font-family: 'AdLib', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #2d5f3f;
+    letter-spacing: 0.02em;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    margin-top: 3rem;
+}
+
+.team-member {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+}
+
+.team-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1.5rem;
+    border: 4px solid #2d5f3f;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.team-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-member h3 {
+    font-size: 1.5rem;
+    color: #2d5f3f;
+    margin-bottom: 0.5rem;
+}
+
+.team-member p {
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Updated Categories Section for Home */
+.categories-section {
+    background: #2d5f3f;
+    padding: 6rem 0;
+}
+
+.categories-section .section-title {
+    font-family: 'AdLib', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-align: center;
+    margin-bottom: 3rem;
+    letter-spacing: 0.02em;
+}
+
+.white-text {
+    color: #fff !important;
+}
+
+.category-card-home {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.category-card-home:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-10px);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.category-card-home h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem;
+}
+
+.category-card-home p {
+    color: #f5f3ed;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.discover-button-home {
+    display: inline-block;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    font-family: 'AdLib', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.discover-button-home:hover {
+    background: #fff;
+    color: #2d5f3f;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Updated Awards Section */
+.awards-section {
+    background: #2d5f3f;
+    padding: 6rem 0;
+}
+
+.awards-section .section-title {
+    font-family: 'AdLib', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-align: center;
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+}
+
+.awards-section .section-subtitle {
+    color: #f5f3ed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .showcase-scroll {
+        padding: 0 2rem;
+    }
+
+    .scroll-arrow {
+        width: 40px;
+        height: 40px;
+    }
+
+    .showcase-item {
+        flex: 0 0 200px;
+    }
+
+    .showcase-image {
+        width: 200px;
+        height: 200px;
+    }
+
+    .about-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+    }
+
+    .new-products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wavy-divider {
+        height: 60px;
+    }
+}
