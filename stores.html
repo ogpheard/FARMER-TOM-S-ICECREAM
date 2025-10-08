@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Locator - Farmer Tom's Ice Cream</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        .stores-page {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: #f5eac3;
+        }
+
+        .stores-header {
+            background: #2d5838;
+            color: #f5eac3;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .stores-header h1 {
+            font-family: 'AdLib', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            color: #f5eac3;
+        }
+
+        .stores-header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .map-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        #map {
+            width: 100%;
+            height: 600px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            margin-bottom: 3rem;
+        }
+
+        .location-permission {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .location-permission h3 {
+            color: #2d5838;
+            margin-bottom: 1rem;
+        }
+
+        .location-permission button {
+            background: #2d5838;
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: 'AdLib', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .location-permission button:hover {
+            background: #1a4d2e;
+            transform: translateY(-2px);
+        }
+
+        .outlets-list-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .outlets-list-header {
+            margin-bottom: 2rem;
+        }
+
+        .outlets-list-header h2 {
+            font-family: 'AdLib', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #2d5838;
+            margin-bottom: 0.5rem;
+        }
+
+        .distance-note {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .outlets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .outlet-card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .outlet-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .outlet-card h3 {
+            color: #2d5838;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .outlet-distance {
+            display: inline-block;
+            background: #f5eac3;
+            color: #2d5838;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .outlet-address {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .outlet-postcode {
+            color: #2d5838;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .outlet-website {
+            display: inline-block;
+            color: #2d5838;
+            text-decoration: underline;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .outlet-website:hover {
+            color: #1a4d2e;
+        }
+
+        .no-website {
+            color: #999;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .leaflet-popup-content-wrapper {
+            border-radius: 12px;
+            padding: 0;
+        }
+
+        .popup-content {
+            padding: 1rem;
+        }
+
+        .popup-content h3 {
+            color: #2d5838;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .popup-content p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .popup-content .postcode {
+            color: #2d5838;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            #map {
+                height: 400px;
+            }
+
+            .outlets-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="Existing Poduct Shots/logo.avif" alt="Farmer Tom's Ice Cream">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#story">Our Story</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="stores.html">Find a Store</a></li>
+                <li><a href="index.html#awards">Awards</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="stores-page">
+        <!-- Header -->
+        <section class="stores-header">
+            <h1>FIND A STORE</h1>
+            <p>Discover where you can find Farmer Tom's Ice Cream near you</p>
+        </section>
+
+        <!-- Map Container -->
+        <div class="map-container">
+            <!-- Location Permission Box -->
+            <div id="locationPermission" class="location-permission" style="display: none;">
+                <h3>Enable Location Services</h3>
+                <p>Allow location access to see stores sorted by distance from you</p>
+                <button onclick="requestLocation()">Enable Location</button>
+            </div>
+
+            <!-- Map -->
+            <div id="map"></div>
+        </div>
+
+        <!-- Outlets List -->
+        <div class="outlets-list-container">
+            <div class="outlets-list-header">
+                <h2>ALL LOCATIONS</h2>
+                <p class="distance-note" id="distanceNote">Click "Enable Location" above to see distances</p>
+            </div>
+            <div class="outlets-grid" id="outletsList">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Farmer Tom's Ice Cream</h4>
+                    <p>Crafting exceptional ice cream since day one</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: hello@farmertoms.com</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow</h4>
+                    <p>Instagram | Facebook | Twitter</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Farmer Tom's Ice Cream. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="stores.js"></script>
+</body>
+</html>
