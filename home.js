@@ -62,41 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
     loadIceCreamData();
 });
 
-// Navigation scroll effect and darkening overlay
+// Navigation scroll effect (video effects removed)
 let lastScroll = 0;
 const nav = document.querySelector('.nav');
-const darkeningOverlay = document.querySelector('.scroll-darkening-overlay');
-const heroVideo = document.querySelector('.hero-video');
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
-    const windowHeight = window.innerHeight;
-
-    // Video fade to white effect - fade to white as you scroll down (complete at 70%)
-    const fadeThreshold = windowHeight * 0.7; // Fade complete at 70% of viewport height
-    if (currentScroll < fadeThreshold) {
-        const scrollProgress = currentScroll / fadeThreshold;
-        const whiteOverlay = scrollProgress; // 0 to 1 (0% to 100% white)
-        if (heroVideo) {
-            // Create a white fade effect using brightness and grayscale
-            heroVideo.style.filter = `brightness(${1 + whiteOverlay * 2}) saturate(${1 - whiteOverlay})`;
-        }
-    } else {
-        if (heroVideo) {
-            heroVideo.style.filter = 'brightness(3) saturate(0)'; // Fully white
-        }
-    }
-
-    // Darkening overlay effect - starts after hero section
-    if (currentScroll > windowHeight) {
-        const scrollDistance = currentScroll - windowHeight;
-        const maxDarkness = 600;
-        const opacity = Math.min(scrollDistance / maxDarkness, 0.6);
-        darkeningOverlay.style.opacity = opacity;
-    } else {
-        darkeningOverlay.style.opacity = 0;
-    }
-
     lastScroll = currentScroll;
 });
 
