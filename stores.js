@@ -18,32 +18,34 @@ async function loadOutlets() {
         const response = await fetch('outlets locations.csv');
         const csvText = await response.text();
 
-        // Parse CSV
-        const lines = csvText.trim().split('\n');
-        const headers = lines[0].split(',');
-
+        // The CSV has entries separated by multiple commas - each store entry is in format:
+        // Name,Latitude,Longitude,Postcode,Website,Type,,,,
         outlets = [];
-        for (let i = 1; i < lines.length; i++) {
-            const line = lines[i];
-            if (!line.trim()) continue;
 
-            // Handle CSV parsing with quoted fields
-            const values = parseCSVLine(line);
+        // Split by groups of commas (stores are separated by ,,,,)
+        const entries = csvText.split(',,,,');
 
-            if (values.length >= 5 && values[0] && values[1] && values[2]) {
-                const outlet = {
-                    name: values[0].trim(),
-                    latitude: parseFloat(values[1]),
-                    longitude: parseFloat(values[2]),
-                    postcode: values[3] ? values[3].trim() : '',
-                    website: values[4] ? values[4].trim() : '',
-                    type: values[5] ? values[5].trim() : 'Retail'
-                };
+        for (let entry of entries) {
+            const parts = entry.split(',').map(p => p.trim());
 
-                // Only add if coordinates are valid
-                if (!isNaN(outlet.latitude) && !isNaN(outlet.longitude)) {
-                    outlets.push(outlet);
-                }
+            // Skip header row and empty entries
+            if (parts[0] === 'Name' || parts[0] === '' || !parts[1] || !parts[2]) continue;
+
+            const name = parts[0].replace(/^["']|["']$/g, '');
+            const lat = parseFloat(parts[1]);
+            const lng = parseFloat(parts[2]);
+            const postcode = parts[3] ? parts[3].replace(/^["']|["']$/g, '') : '';
+            const website = parts[4] ? parts[4].trim() : '';
+
+            // Only add if we have valid coordinates
+            if (!isNaN(lat) && !isNaN(lng) && name) {
+                outlets.push({
+                    name: name,
+                    latitude: lat,
+                    longitude: lng,
+                    postcode: postcode,
+                    website: website
+                });
             }
         }
 
@@ -108,7 +110,7 @@ function initializeMap() {
         markers.push({ marker, outlet });
     });
 
-    // Show location permission prompt
+    // Show location permission prompt after a delay
     setTimeout(() => {
         document.getElementById('locationPermission').style.display = 'block';
     }, 1000);
@@ -127,8 +129,9 @@ function requestLocation() {
                 // Hide permission box
                 document.getElementById('locationPermission').style.display = 'none';
 
-                // Update distance note
+                // Update distance note - ONLY show this text when location is enabled
                 document.getElementById('distanceNote').textContent = 'Stores sorted by distance from your location';
+                document.getElementById('distanceNote').style.display = 'block';
 
                 // Add user location marker
                 L.marker([userLocation.lat, userLocation.lng], {
@@ -148,13 +151,16 @@ function requestLocation() {
             },
             (error) => {
                 console.error('Error getting location:', error);
-                alert('Unable to get your location. The list will show stores in alphabetical order.');
+                // Hide permission box and distance note if user denies
                 document.getElementById('locationPermission').style.display = 'none';
+                document.getElementById('distanceNote').style.display = 'none';
+                // Stores will still show in alphabetical order
             }
         );
     } else {
         alert('Geolocation is not supported by your browser');
         document.getElementById('locationPermission').style.display = 'none';
+        document.getElementById('distanceNote').style.display = 'none';
     }
 }
 
