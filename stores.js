@@ -3,6 +3,7 @@ let outlets = [];
 let map;
 let markers = [];
 let userLocation = null;
+let currentOutletType = 'retail'; // 'retail' or 'catering'
 
 // Custom cow icon
 const cowIcon = L.icon({
@@ -281,5 +282,42 @@ function focusMarker(lat, lng) {
     document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
+// Toggle between retail and catering outlets
+function toggleOutletType(type) {
+    currentOutletType = type;
+
+    // Update active button
+    const buttons = document.querySelectorAll('.outlet-toggle-btn');
+    buttons.forEach(btn => {
+        if (btn.getAttribute('data-type') === type) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
+    // Update header text
+    const subtitle = document.getElementById('headerSubtitle');
+    if (type === 'retail') {
+        subtitle.textContent = 'Where can you buy our products to enjoy at home?';
+    } else {
+        subtitle.textContent = 'Where can you find our ice cream when out and about?';
+    }
+
+    // Re-display outlets (in real implementation, this would filter data)
+    displayOutlets();
+}
+
 // Initialize when page loads
-document.addEventListener('DOMContentLoaded', loadOutlets);
+document.addEventListener('DOMContentLoaded', () => {
+    loadOutlets();
+
+    // Add toggle button listeners
+    const toggleButtons = document.querySelectorAll('.outlet-toggle-btn');
+    toggleButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const type = btn.getAttribute('data-type');
+            toggleOutletType(type);
+        });
+    });
+});

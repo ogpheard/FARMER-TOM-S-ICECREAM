@@ -10,14 +10,27 @@
         .stores-page {
             padding-top: 80px;
             min-height: 100vh;
-            background: #f5eac3;
+            background: linear-gradient(to bottom, #fdf6e3 0%, #f5eac3 50%, #fff 100%);
         }
 
         .stores-header {
-            background: #2d5838;
+            background: linear-gradient(135deg, #020353 0%, #2d5838 100%);
             color: #f5eac3;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stores-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(245, 234, 195, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
         }
 
         .stores-header h1 {
@@ -25,12 +38,103 @@
             font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 1rem;
             color: #f5eac3;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .stores-header p {
             font-size: 1.2rem;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        /* Outlet Toggle Buttons */
+        .outlet-toggle-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .outlet-toggle-btn {
+            padding: 1rem 2.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid #f5eac3;
+            color: #f5eac3;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'AdLib', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .outlet-toggle-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: #f5eac3;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+            z-index: -1;
+        }
+
+        .outlet-toggle-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .outlet-toggle-btn:hover {
+            color: #020353;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 234, 195, 0.4);
+        }
+
+        .outlet-toggle-btn.active {
+            background: #f5eac3;
+            color: #020353;
+            border-color: #f5eac3;
+            box-shadow: 0 6px 20px rgba(245, 234, 195, 0.5);
+            transform: scale(1.05);
+        }
+
+        .outlet-toggle-btn.active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+        }
+
+        .toggle-text {
+            font-size: 1rem;
+            letter-spacing: 0.5px;
         }
 
         .map-container {
@@ -42,40 +146,70 @@
         #map {
             width: 100%;
             height: 600px;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(2, 3, 83, 0.2);
             margin-bottom: 3rem;
+            border: 4px solid #020353;
         }
 
         .location-permission {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 12px;
+            background: linear-gradient(135deg, #fff 0%, #f5eac3 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
             text-align: center;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 6px 25px rgba(2, 3, 83, 0.1);
+            border: 3px solid #020353;
         }
 
         .location-permission h3 {
-            color: #2d5838;
+            font-family: 'AdLib', sans-serif;
+            color: #020353;
             margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .location-permission p {
+            color: #333;
+            margin-bottom: 1.5rem;
         }
 
         .location-permission button {
-            background: #2d5838;
+            background: linear-gradient(135deg, #020353 0%, #2d5838 100%);
             color: #fff;
             border: none;
-            padding: 1rem 2rem;
+            padding: 1rem 2.5rem;
             border-radius: 50px;
             font-family: 'AdLib', sans-serif;
-            font-size: 1rem;
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(2, 3, 83, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .location-permission button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+
+        .location-permission button:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .location-permission button:hover {
-            background: #1a4d2e;
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 25px rgba(2, 3, 83, 0.4);
         }
 
         .outlets-list-container {
@@ -91,8 +225,21 @@
         .outlets-list-header h2 {
             font-family: 'AdLib', sans-serif;
             font-size: clamp(2rem, 4vw, 3rem);
-            color: #2d5838;
+            color: #020353;
             margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .outlets-list-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, #020353 0%, transparent 100%);
+            border-radius: 2px;
         }
 
         .distance-note {
@@ -107,34 +254,59 @@
         }
 
         .outlet-card {
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #fff 0%, #fdf6e3 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 6px 25px rgba(2, 3, 83, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .outlet-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, rgba(2, 3, 83, 0.05) 50%, transparent 100%);
+            transition: left 0.5s ease;
+        }
+
+        .outlet-card:hover::before {
+            left: 100%;
         }
 
         .outlet-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px) rotate(-1deg);
+            box-shadow: 0 12px 35px rgba(2, 3, 83, 0.2);
+            border-color: #020353;
         }
 
         .outlet-card h3 {
-            color: #2d5838;
-            font-size: 1.25rem;
+            font-family: 'AdLib', sans-serif;
+            color: #020353;
+            font-size: 1.4rem;
             margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
         }
 
         .outlet-distance {
             display: inline-block;
-            background: #f5eac3;
-            color: #2d5838;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            background: linear-gradient(135deg, #020353 0%, #2d5838 100%);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
+            box-shadow: 0 2px 10px rgba(2, 3, 83, 0.2);
+            position: relative;
+            z-index: 1;
         }
 
         .outlet-address {
@@ -145,22 +317,31 @@
         }
 
         .outlet-postcode {
-            color: #666;
-            font-size: 0.9rem;
+            color: #555;
+            font-size: 0.95rem;
             margin-bottom: 0.75rem;
-            line-height: 1.5;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
         }
 
         .outlet-website {
             display: inline-block;
-            color: #2d5838;
-            text-decoration: underline;
+            color: #020353;
+            text-decoration: none;
             font-size: 0.95rem;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            padding-bottom: 2px;
+            border-bottom: 2px solid #020353;
         }
 
         .outlet-website:hover {
-            color: #1a4d2e;
+            color: #2d5838;
+            border-bottom-color: #2d5838;
+            transform: translateX(3px);
         }
 
         .no-website {
@@ -179,8 +360,9 @@
         }
 
         .popup-content h3 {
-            color: #2d5838;
-            font-size: 1.1rem;
+            font-family: 'AdLib', sans-serif;
+            color: #020353;
+            font-size: 1.2rem;
             margin-bottom: 0.5rem;
         }
 
@@ -191,9 +373,22 @@
         }
 
         .popup-content .postcode {
-            color: #2d5838;
+            color: #020353;
             font-weight: 600;
             margin-bottom: 0.75rem;
+        }
+
+        .popup-content a {
+            color: #020353;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid #020353;
+            transition: all 0.3s ease;
+        }
+
+        .popup-content a:hover {
+            color: #2d5838;
+            border-bottom-color: #2d5838;
         }
 
         @media (max-width: 768px) {
@@ -229,7 +424,19 @@
         <!-- Header -->
         <section class="stores-header">
             <h1>FIND A STORE</h1>
-            <p>Where can you buy our products to enjoy at home?</p>
+            <p id="headerSubtitle">Where can you buy our products to enjoy at home?</p>
+
+            <!-- Toggle Switch -->
+            <div class="outlet-toggle-container">
+                <button class="outlet-toggle-btn active" data-type="retail">
+                    <span class="toggle-icon">🏪</span>
+                    <span class="toggle-text">Retail Outlets</span>
+                </button>
+                <button class="outlet-toggle-btn" data-type="catering">
+                    <span class="toggle-icon">🍦</span>
+                    <span class="toggle-text">Catering & Scooping</span>
+                </button>
+            </div>
         </section>
 
         <!-- Map Container -->
