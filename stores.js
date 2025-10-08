@@ -18,27 +18,22 @@ async function loadOutlets() {
         const response = await fetch('outlets locations.csv');
         const csvText = await response.text();
 
-        // The CSV has entries separated by multiple commas - each store entry is in format:
-        // Name,Latitude,Longitude,Postcode,Website,Type,,,,
         outlets = [];
 
-        // Split by groups of commas (stores are separated by ,,,,)
-        const entries = csvText.split(',,,,');
+        // The CSV is one long line with pattern: Name,Lat,Long,Postcode,Website,Type,,,,Name,Lat,Long...
+        // Use regex to match groups of 6 fields before ,,,,
+        const regex = /([^,]+),([^,]+),([^,]+),([^,]*),([^,]*),([^,]*),{0,4}/g;
+        let match;
 
-        for (let entry of entries) {
-            const parts = entry.split(',').map(p => p.trim());
+        while ((match = regex.exec(csvText)) !== null) {
+            const name = match[1].trim().replace(/^["']|["']$/g, '');
+            const lat = parseFloat(match[2]);
+            const lng = parseFloat(match[3]);
+            const postcode = match[4] ? match[4].trim().replace(/^["']|["']$/g, '') : '';
+            const website = match[5] ? match[5].trim() : '';
 
-            // Skip header row and empty entries
-            if (parts[0] === 'Name' || parts[0] === '' || !parts[1] || !parts[2]) continue;
-
-            const name = parts[0].replace(/^["']|["']$/g, '');
-            const lat = parseFloat(parts[1]);
-            const lng = parseFloat(parts[2]);
-            const postcode = parts[3] ? parts[3].replace(/^["']|["']$/g, '') : '';
-            const website = parts[4] ? parts[4].trim() : '';
-
-            // Only add if we have valid coordinates
-            if (!isNaN(lat) && !isNaN(lng) && name) {
+            // Skip header and validate
+            if (name && name !== 'Name' && !isNaN(lat) && !isNaN(lng)) {
                 outlets.push({
                     name: name,
                     latitude: lat,
@@ -49,7 +44,12 @@ async function loadOutlets() {
             }
         }
 
-        console.log(`Loaded ${outlets.length} outlets`);
+        console.log(`Loaded ${outlets.length} outlets (expected 62)`);
+
+        if (outlets.length !== 62) {
+            console.warn(`Warning: Expected 62 stores but loaded ${outlets.length}`);
+        }
+
         initializeMap();
         displayOutlets();
 
@@ -110,10 +110,37 @@ function initializeMap() {
         markers.push({ marker, outlet });
     });
 
-    // Show location permission prompt after a delay
-    setTimeout(() => {
-        document.getElementById('locationPermission').style.display = 'block';
-    }, 1000);
+    // Check if location was previously enabled
+    const savedLocation = localStorage.getItem('userLocation');
+    if (savedLocation) {
+        const loc = JSON.parse(savedLocation);
+        userLocation = { lat: loc.lat, lng: loc.lng };
+
+        // Add user marker
+        L.marker([userLocation.lat, userLocation.lng], {
+            icon: L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+            })
+        }).addTo(map).bindPopup('You are here');
+
+        // Update UI
+        document.getElementById('distanceNote').textContent = 'Stores sorted by distance from your location';
+        document.getElementById('distanceNote').style.display = 'block';
+
+        // Recenter on user
+        map.setView([userLocation.lat, userLocation.lng], 11);
+
+        // Display with distance
+        displayOutlets();
+    } else {
+        // Show location permission prompt after a delay if not saved
+        setTimeout(() => {
+            document.getElementById('locationPermission').style.display = 'block';
+        }, 1000);
+    }
 }
 
 // Request user location
@@ -125,6 +152,9 @@ function requestLocation() {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
+
+                // Save to localStorage so it persists on refresh
+                localStorage.setItem('userLocation', JSON.stringify(userLocation));
 
                 // Hide permission box
                 document.getElementById('locationPermission').style.display = 'none';
@@ -196,6 +226,8 @@ function displayOutlets() {
         sortedOutlets.sort((a, b) => a.name.localeCompare(b.name));
     }
 
+    console.log(`Displaying ${sortedOutlets.length} stores`);
+
     // Generate HTML
     outletsList.innerHTML = sortedOutlets.map(outlet => {
         const distanceBadge = outlet.distance
@@ -210,7 +242,7 @@ function displayOutlets() {
             <div class="outlet-card" onclick="focusMarker(${outlet.latitude}, ${outlet.longitude})">
                 <h3>${outlet.name}</h3>
                 ${distanceBadge}
-                <div class="outlet-address">${outlet.postcode}</div>
+                <div class="outlet-postcode">${outlet.postcode}</div>
                 ${websiteLink}
             </div>
         `;
