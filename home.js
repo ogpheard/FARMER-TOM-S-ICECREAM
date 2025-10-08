@@ -8,9 +8,10 @@ window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     const windowHeight = window.innerHeight;
 
-    // Video fade to white effect - fade to white as you scroll down
-    if (currentScroll < windowHeight) {
-        const scrollProgress = currentScroll / windowHeight;
+    // Video fade to white effect - fade to white as you scroll down (complete at 70%)
+    const fadeThreshold = windowHeight * 0.7; // Fade complete at 70% of viewport height
+    if (currentScroll < fadeThreshold) {
+        const scrollProgress = currentScroll / fadeThreshold;
         const whiteOverlay = scrollProgress; // 0 to 1 (0% to 100% white)
         if (heroVideo) {
             // Create a white fade effect using brightness and grayscale
