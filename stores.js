@@ -12,25 +12,31 @@ const cowIcon = L.icon({
     popupAnchor: [0, -40]
 });
 
-// Parse CSV data
+// Parse CSV data - handling quoted fields properly
 async function loadOutlets() {
     try {
         const response = await fetch('outlets locations.csv');
-        const csvText = await response.text();
+        const text = await response.text();
 
         outlets = [];
 
-        // The CSV is one long line with pattern: Name,Lat,Long,Postcode,Website,Type,,,,Name,Lat,Long...
-        // Use regex to match groups of 6 fields before ,,,,
-        const regex = /([^,]+),([^,]+),([^,]+),([^,]*),([^,]*),([^,]*),{0,4}/g;
-        let match;
+        // Split by the 4-comma separator
+        const entries = text.split(',,,,');
 
-        while ((match = regex.exec(csvText)) !== null) {
-            const name = match[1].trim().replace(/^["']|["']$/g, '');
-            const lat = parseFloat(match[2]);
-            const lng = parseFloat(match[3]);
-            const postcode = match[4] ? match[4].trim().replace(/^["']|["']$/g, '') : '';
-            const website = match[5] ? match[5].trim() : '';
+        for (let entry of entries) {
+            entry = entry.trim();
+            if (!entry) continue;
+
+            // Parse CSV with quoted fields
+            const fields = parseCSVRow(entry);
+
+            if (fields.length < 4) continue;
+
+            const name = fields[0].trim();
+            const lat = parseFloat(fields[1]);
+            const lng = parseFloat(fields[2]);
+            const postcode = fields[3] ? fields[3].trim() : '';
+            const website = fields[4] ? fields[4].trim() : '';
 
             // Skip header and validate
             if (name && name !== 'Name' && !isNaN(lat) && !isNaN(lng)) {
@@ -44,41 +50,52 @@ async function loadOutlets() {
             }
         }
 
-        console.log(`Loaded ${outlets.length} outlets (expected 62)`);
+        console.log(`✅ Loaded ${outlets.length} outlets (expected 62)`);
 
         if (outlets.length !== 62) {
-            console.warn(`Warning: Expected 62 stores but loaded ${outlets.length}`);
+            console.warn(`⚠️ Warning: Expected 62 stores but loaded ${outlets.length}`);
         }
 
         initializeMap();
         displayOutlets();
 
     } catch (error) {
-        console.error('Error loading outlets:', error);
+        console.error('❌ Error loading outlets:', error);
     }
 }
 
-// Simple CSV line parser
-function parseCSVLine(line) {
-    const result = [];
+// Properly parse CSV row with quoted fields
+function parseCSVRow(row) {
+    const fields = [];
     let current = '';
     let inQuotes = false;
 
-    for (let i = 0; i < line.length; i++) {
-        const char = line[i];
+    for (let i = 0; i < row.length; i++) {
+        const char = row[i];
+        const nextChar = row[i + 1];
 
         if (char === '"') {
-            inQuotes = !inQuotes;
+            if (inQuotes && nextChar === '"') {
+                // Escaped quote
+                current += '"';
+                i++; // Skip next quote
+            } else {
+                // Toggle quote state
+                inQuotes = !inQuotes;
+            }
         } else if (char === ',' && !inQuotes) {
-            result.push(current);
+            // Field separator
+            fields.push(current);
             current = '';
         } else {
             current += char;
         }
     }
-    result.push(current);
 
-    return result;
+    // Add last field
+    fields.push(current);
+
+    return fields;
 }
 
 // Initialize the map
@@ -226,7 +243,7 @@ function displayOutlets() {
         sortedOutlets.sort((a, b) => a.name.localeCompare(b.name));
     }
 
-    console.log(`Displaying ${sortedOutlets.length} stores`);
+    console.log(`📍 Displaying ${sortedOutlets.length} stores`);
 
     // Generate HTML
     outletsList.innerHTML = sortedOutlets.map(outlet => {
