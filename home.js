@@ -5,7 +5,6 @@ async function loadIceCreamData() {
     try {
         const response = await fetch('ice_cream_data');
         iceCreamData = await response.json();
-        populateShowcase();
         populateNewFor2025();
     } catch (error) {
         console.error('Error loading ice cream data:', error);
@@ -30,29 +29,6 @@ function getImageFilename(product) {
     return `Icecream Product Shots/${folder}/${imageName}.png`;
 }
 
-// Populate showcase with featured products
-function populateShowcase() {
-    const showcaseContainer = document.getElementById('showcaseContainer');
-    if (!showcaseContainer) return;
-
-    // Get 8 random award-winning products
-    const featuredProducts = iceCreamData
-        .filter(p => p.award)
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 8);
-
-    showcaseContainer.innerHTML = featuredProducts.map(product => `
-        <div class="showcase-item">
-            <a href="product.html?name=${encodeURIComponent(product.name)}">
-                <div class="showcase-image">
-                    <img src="${getImageFilename(product)}" alt="${product.name}">
-                </div>
-                <h3>${product.name}</h3>
-            </a>
-        </div>
-    `).join('');
-}
-
 // Populate New for 2025 section
 function populateNewFor2025() {
     const newProductsGrid = document.getElementById('newProducts');
@@ -64,37 +40,25 @@ function populateNewFor2025() {
         .sort(() => 0.5 - Math.random())
         .slice(0, 3);
 
-    newProductsGrid.innerHTML = newProducts.map(product => `
-        <div class="new-product-card">
-            <a href="product.html?name=${encodeURIComponent(product.name)}">
+    newProductsGrid.innerHTML = newProducts.map(product => {
+        const imageUrl = getImageFilename(product);
+        return `
+            <div class="new-product-card">
                 <div class="new-product-image">
-                    <img src="${getImageFilename(product)}" alt="${product.name}">
+                    <img src="${imageUrl}" alt="${product.name}" onerror="console.error('Failed to load:', '${imageUrl}')">
                 </div>
                 <div class="new-product-info">
                     <h3>${product.name}</h3>
                     ${product.award ? `<p class="award-badge">${product.award}</p>` : ''}
+                    <a href="product.html?name=${encodeURIComponent(product.name)}" class="see-button">VIEW PRODUCT</a>
                 </div>
-            </a>
-        </div>
-    `).join('');
+            </div>
+        `;
+    }).join('');
 }
 
-// Showcase scroll functionality
+// Load data on page load
 document.addEventListener('DOMContentLoaded', () => {
-    const scrollLeft = document.querySelector('.scroll-left');
-    const scrollRight = document.querySelector('.scroll-right');
-    const showcaseContainer = document.getElementById('showcaseContainer');
-
-    if (scrollLeft && scrollRight && showcaseContainer) {
-        scrollLeft.addEventListener('click', () => {
-            showcaseContainer.scrollBy({ left: -300, behavior: 'smooth' });
-        });
-
-        scrollRight.addEventListener('click', () => {
-            showcaseContainer.scrollBy({ left: 300, behavior: 'smooth' });
-        });
-    }
-
     loadIceCreamData();
 });
 
