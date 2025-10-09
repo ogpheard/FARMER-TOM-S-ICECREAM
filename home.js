@@ -13,7 +13,8 @@ async function loadIceCreamData() {
 
 // Map product names to image filenames
 function getImageFilename(product) {
-    const imageName = product.name.replace(/\s*\([^)]*\)/g, '');
+    // Remove anything in parentheses from the product name
+    const baseName = product.name.replace(/\s*\([^)]*\)/g, '').trim();
     let folder = '';
 
     if (product.type === 'Normal') {
@@ -26,7 +27,16 @@ function getImageFilename(product) {
         folder = 'Sorbets';
     }
 
-    return `Icecream Product Shots/${folder}/${imageName}.png`;
+    // Check various filename formats
+    const possibleFormats = [
+        `Icecream Product Shots/${folder}/${baseName}.png`,
+        `Icecream Product Shots/${folder}/${baseName} (normal).png`,
+        `Icecream Product Shots/${folder}/${baseName.toUpperCase()}.png`,
+        `Icecream Product Shots/${folder}/${baseName} normal.png`,
+    ];
+
+    // Return the first format (will use onerror to handle missing files)
+    return possibleFormats[0];
 }
 
 // Populate New for 2025 section
@@ -42,15 +52,18 @@ function populateNewFor2025() {
 
     newProductsGrid.innerHTML = newProducts.map(product => {
         const imageUrl = getImageFilename(product);
+        // Create slug for product URL
+        const productSlug = product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
         return `
             <div class="new-product-card">
                 <div class="new-product-image">
-                    <img src="${imageUrl}" alt="${product.name}" onerror="console.error('Failed to load:', '${imageUrl}')">
+                    <img src="${imageUrl}" alt="${product.name}" onerror="this.src='Existing Poduct Shots/background icecream image.avif'; console.log('Image not found, using fallback for: ${product.name}')">
                 </div>
                 <div class="new-product-info">
                     <h3>${product.name}</h3>
                     ${product.award ? `<p class="award-badge">${product.award}</p>` : ''}
-                    <a href="product.html?name=${encodeURIComponent(product.name)}" class="see-button">VIEW PRODUCT</a>
+                    <a href="product.html?id=${productSlug}" class="see-button">VIEW PRODUCT</a>
                 </div>
             </div>
         `;
