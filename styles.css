@@ -123,6 +123,7 @@ a {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    margin-bottom: 0;
 }
 
 /* Scroll Darkening Overlay - REMOVED */
@@ -1607,7 +1608,7 @@ a {
 /* New for 2025 Section */
 .new-for-2025-section {
     background: #f5eac3;
-    padding: 6rem 0;
+    padding: 4rem 0;
 }
 
 .new-for-2025-section .section-title {
@@ -1753,55 +1754,32 @@ a {
 
 /* Combined About & Farmer Tom Section */
 .about-farmer-tom-section {
-    background: linear-gradient(135deg, #020353 0%, #1a3a5a 50%, #2d5838 100%);
-    padding: 8rem 0;
+    background: #2d5838;
+    padding: 5rem 0;
     color: #fff;
     position: relative;
     overflow: hidden;
-}
-
-.about-farmer-tom-section::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -10%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(245, 234, 195, 0.08) 0%, transparent 70%);
-    border-radius: 50%;
-}
-
-.about-farmer-tom-section::after {
-    content: '';
-    position: absolute;
-    bottom: -30%;
-    right: -10%;
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle, rgba(245, 234, 195, 0.05) 0%, transparent 70%);
-    border-radius: 50%;
 }
 
 .about-farmer-tom-section .section-title {
     font-family: 'AdLib', sans-serif;
     font-size: clamp(3rem, 6vw, 5rem);
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
     color: #f5eac3;
     letter-spacing: 0.05em;
     position: relative;
     z-index: 1;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Farmer Tom Spotlight */
 .farmer-tom-spotlight {
     max-width: 1200px;
-    margin: 0 auto 6rem;
+    margin: 0 auto 4rem;
     padding: 0 2rem;
     display: grid;
     grid-template-columns: 1fr 1.5fr;
-    gap: 5rem;
+    gap: 4rem;
     align-items: center;
     position: relative;
     z-index: 1;
@@ -1886,27 +1864,27 @@ a {
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
 }
 
-.card-icon {
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-    animation: float 3s ease-in-out infinite;
+.story-detail-btn {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.75rem 2rem;
+    background: transparent;
+    border: 2px solid #f5eac3;
+    color: #f5eac3;
+    font-family: 'AdLib', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
-.about-story-card:nth-child(2) .card-icon {
-    animation-delay: 0.3s;
-}
-
-.about-story-card:nth-child(3) .card-icon {
-    animation-delay: 0.6s;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
+.story-detail-btn:hover {
+    background: #f5eac3;
+    color: #2d5838;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(245, 234, 195, 0.3);
 }
 
 .about-story-card h3 {
@@ -1937,8 +1915,8 @@ a {
 
 /* Updated Categories Section for Home */
 .categories-section {
-    background: #f5eac3;
-    padding: 6rem 0;
+    background: #2d5838;
+    padding: 4rem 0;
 }
 
 .categories-section .section-title {
@@ -1947,7 +1925,7 @@ a {
     text-align: center;
     margin-bottom: 3rem;
     letter-spacing: 0.02em;
-    color: #020353;
+    color: #f5eac3;
 }
 
 .white-text {
@@ -2007,14 +1985,14 @@ a {
 /* Updated Awards Section */
 .awards-section {
     background: #f5eac3;
-    padding: 6rem 0;
+    padding: 4rem 0;
 }
 
 .awards-section .section-title {
     font-family: 'AdLib', sans-serif;
     font-size: clamp(2.5rem, 5vw, 4rem);
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     letter-spacing: 0.02em;
     color: #020353;
 }
