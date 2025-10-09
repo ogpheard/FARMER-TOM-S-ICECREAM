@@ -16,27 +16,40 @@ function getImageFilename(product) {
     // Remove anything in parentheses from the product name
     const baseName = product.name.replace(/\s*\([^)]*\)/g, '').trim();
     let folder = '';
+    let filename = baseName;
 
     if (product.type === 'Normal') {
         folder = 'Normal';
     } else if (product.type === 'Milk Maid') {
         folder = 'Milk Maid';
+        // Milk Maid products have specific format
+        if (product.name.includes('Bubblegum')) {
+            filename = 'Bubblegum (milk maid)';
+        } else if (product.name.includes('Vanilla')) {
+            filename = 'Vanilla (milk maid)';
+        }
     } else if (product.type.includes('Plant-based') || product.type.includes('Coconut')) {
         folder = 'Plant-Based';
     } else if (product.type === 'Sorbet') {
         folder = 'Sorbets';
+        // Sorbet products use lowercase names
+        if (product.name.includes('Mango')) {
+            filename = 'mango';
+        } else if (product.name.includes('Lemon')) {
+            filename = 'lemon';
+        } else if (product.name.includes('Raspberry')) {
+            filename = 'raspberry';
+        } else if (product.name.includes('Orange')) {
+            filename = 'orange';
+        } else if (product.name.includes('Passionfruit')) {
+            filename = 'passion fruit';
+        } else if (product.name.includes('Blackcurrant')) {
+            filename = 'BlackCurrent';
+        }
     }
 
-    // Check various filename formats
-    const possibleFormats = [
-        `Icecream Product Shots/${folder}/${baseName}.png`,
-        `Icecream Product Shots/${folder}/${baseName} (normal).png`,
-        `Icecream Product Shots/${folder}/${baseName.toUpperCase()}.png`,
-        `Icecream Product Shots/${folder}/${baseName} normal.png`,
-    ];
-
-    // Return the first format (will use onerror to handle missing files)
-    return possibleFormats[0];
+    // Return the constructed path
+    return `Icecream Product Shots/${folder}/${filename}.png`;
 }
 
 // Populate New for 2025 section
