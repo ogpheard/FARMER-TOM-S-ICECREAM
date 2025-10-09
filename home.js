@@ -44,11 +44,12 @@ function populateNewFor2025() {
     const newProductsGrid = document.getElementById('newProducts');
     if (!newProductsGrid) return;
 
-    // Select 3 random products as "new for 2025"
-    const newProducts = iceCreamData
-        .filter(p => p.type === 'Normal')
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 3);
+    // Select specific products for "new for 2025" - one from each category
+    const sorbetProduct = iceCreamData.find(p => p.type === 'Sorbet' && p.name === 'Mango (Sorbet)');
+    const coconutProduct = iceCreamData.find(p => p.type === 'Plant-based (Coconut)' && p.name === 'Chocolate Coconut');
+    const milkMaidProduct = iceCreamData.find(p => p.type === 'Milk Maid' && p.name === 'Bubblegum (Milk Maid)');
+
+    const newProducts = [sorbetProduct, coconutProduct, milkMaidProduct].filter(Boolean);
 
     newProductsGrid.innerHTML = newProducts.map(product => {
         const imageUrl = getImageFilename(product);
