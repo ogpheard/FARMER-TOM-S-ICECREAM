@@ -1585,24 +1585,29 @@ a {
 /* HOME PAGE REDESIGN */
 /* ==================== */
 
-/* Wavy Dividers */
-.wavy-divider {
+/* Smooth Wave Transitions */
+.smooth-wave-transition {
     width: 100%;
-    height: 100px;
+    height: 80px;
     display: block;
     position: relative;
-    margin-top: -50px;
-    margin-bottom: -50px;
+    margin: 0;
     padding: 0;
-    z-index: 10;
+    line-height: 0;
 }
 
-.wavy-to-cream path {
-    fill: #f5eac3;
+.smooth-wave-transition svg {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
-.wavy-to-green path {
-    fill: #2d5838;
+.green-to-cream {
+    background: #2d5838;
+}
+
+.cream-to-green {
+    background: #f5eac3;
 }
 
 /* New for 2025 Section */
@@ -2012,10 +2017,8 @@ a {
         grid-template-columns: 1fr;
     }
 
-    .wavy-divider {
-        height: 80px;
-        margin-top: -40px;
-        margin-bottom: -40px;
+    .smooth-wave-transition {
+        height: 60px;
     }
 
     .categories-grid {
