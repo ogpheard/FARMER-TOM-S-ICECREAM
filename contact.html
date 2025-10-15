@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Farmer Tom's Ice Cream</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html"><img src="Existing Poduct Shots/logo.avif" alt="Farmer Tom's Ice Cream"></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#story">Our Story</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="stores.html">Find a Store</a></li>
+                <li><a href="index.html#awards">Awards</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="contact-page">
+        <!-- Hero Section -->
+        <section class="contact-hero">
+            <div class="section-container contact-hero-content">
+                <span class="contact-hero-kicker">We would love to hear from you</span>
+                <h1>Contact Farmer Tom's Ice Cream</h1>
+                <p>Whether you're looking to stock our award-winning scoops, plan a farm visit, or just say hello, our team is here to help.</p>
+                <div class="contact-hero-actions">
+                    <a href="tel:+441237999111" class="contact-hero-button primary">Call the Dairy</a>
+                    <a href="mailto:hello@farmertoms.com" class="contact-hero-button">Email Us</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="smooth-wave-transition contact-hero-wave">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path d="M0,80 C360,40 720,100 1080,60 C1200,50 1320,70 1440,80 L1440,120 L0,120 Z" fill="#f5eac3"></path>
+            </svg>
+        </div>
+
+        <!-- Contact Options -->
+        <section class="contact-options">
+            <div class="section-container">
+                <div class="contact-info-grid">
+                    <article class="contact-card">
+                        <div class="contact-card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img">
+                                <rect x="6" y="10" width="36" height="28" rx="4" fill="#f5eac3" stroke="#020353" stroke-width="2"></rect>
+                                <polyline points="6,14 24,28 42,14" fill="none" stroke="#020353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                            </svg>
+                        </div>
+                        <h3>General Enquiries</h3>
+                        <p>Questions about our flavours, deliveries, or the farm? Drop us a message and we will get back within one working day.</p>
+                        <a class="contact-card-link" href="mailto:hello@farmertoms.com">hello@farmertoms.com</a>
+                    </article>
+
+                    <article class="contact-card">
+                        <div class="contact-card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img">
+                                <path d="M10 14h28" stroke="#020353" stroke-width="2" stroke-linecap="round"></path>
+                                <rect x="8" y="10" width="32" height="24" rx="6" fill="#f5eac3" stroke="#020353" stroke-width="2"></rect>
+                                <path d="M18 32h12" stroke="#020353" stroke-width="2" stroke-linecap="round"></path>
+                            </svg>
+                        </div>
+                        <h3>Wholesale &amp; Trade</h3>
+                        <p>Partner with us to bring Farmer Tom's to your customers. We offer bespoke menus, freezer support, and training.</p>
+                        <a class="contact-card-link" href="mailto:trade@farmertoms.com">trade@farmertoms.com</a>
+                    </article>
+
+                    <article class="contact-card">
+                        <div class="contact-card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img">
+                                <circle cx="24" cy="20" r="8" fill="#f5eac3" stroke="#020353" stroke-width="2"></circle>
+                                <path d="M24 4v6" stroke="#020353" stroke-width="2" stroke-linecap="round"></path>
+                                <path d="M24 28c-6.627 0-12 5.373-12 12h24c0-6.627-5.373-12-12-12z" fill="#f5eac3" stroke="#020353" stroke-width="2" stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                        <h3>Visit the Parlour</h3>
+                        <p>We host tastings, school visits, and farm tours throughout the year. Let us know your plans and we will tailor the visit.</p>
+                        <a class="contact-card-link" href="mailto:visits@farmertoms.com">visits@farmertoms.com</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-connect">
+            <div class="section-container">
+                <div class="contact-connect-grid">
+                    <div class="contact-form-card">
+                        <h2>Send us a message</h2>
+                        <p>Share a little more detail below and our friendly team will follow up with you.</p>
+                        <form id="contactForm" class="contact-form" novalidate>
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="contactName">Full name</label>
+                                    <input type="text" id="contactName" name="name" autocomplete="name" required>
+                                </div>
+                                <div class="form-field">
+                                    <label for="contactEmail">Email address</label>
+                                    <input type="email" id="contactEmail" name="email" autocomplete="email" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="contactPhone">Phone (optional)</label>
+                                    <input type="tel" id="contactPhone" name="phone" autocomplete="tel">
+                                </div>
+                                <div class="form-field">
+                                    <label for="contactTopic">How can we help?</label>
+                                    <select id="contactTopic" name="topic" required>
+                                        <option value="" disabled selected>Select a topic</option>
+                                        <option value="wholesale">Wholesale partnership</option>
+                                        <option value="event">Events &amp; catering</option>
+                                        <option value="visit">Farm visit</option>
+                                        <option value="flavours">Flavour request</option>
+                                        <option value="other">Something else</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-field full">
+                                    <label for="contactMessage">Tell us more</label>
+                                    <textarea id="contactMessage" name="message" rows="5" required></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="contact-submit">Send Message</button>
+                            <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+                        </form>
+                    </div>
+                    <aside class="contact-details-card">
+                        <h3>Visit the farm</h3>
+                        <div class="details-group">
+                            <h4>Address</h4>
+                            <p>Farmer Tom's Ice Cream<br>Holsworthy, Devon<br>EX22 7AA</p>
+                        </div>
+                        <div class="details-group">
+                            <h4>Opening Hours</h4>
+                            <ul>
+                                <li>Monday – Friday: 9am – 5pm</li>
+                                <li>Saturday: 10am – 4pm</li>
+                                <li>Sunday: Closed (but the cows are still busy!)</li>
+                            </ul>
+                        </div>
+                        <div class="details-group">
+                            <h4>Stay Connected</h4>
+                            <p>Follow our seasonal flavours, pop-ups, and behind-the-scenes stories.</p>
+                            <div class="social-links">
+                                <a href="#" aria-label="Follow on Instagram">Instagram</a>
+                                <a href="#" aria-label="Follow on Facebook">Facebook</a>
+                                <a href="#" aria-label="Follow on TikTok">TikTok</a>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <div class="smooth-wave-transition contact-connect-wave">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path d="M0,80 C360,40 720,100 1080,60 C1200,50 1320,70 1440,80 L1440,120 L0,120 Z" fill="#2d5838"></path>
+            </svg>
+        </div>
+
+        <section class="contact-visit">
+            <div class="section-container contact-visit-container">
+                <div class="contact-map">
+                    <div class="map-overlay">
+                        <h3>Plan your visit</h3>
+                        <p>We are nestled between Bodmin Moor and the beautiful North Devon coastline. Pop your postcode in when you arrive and we'll share our favourite scenic route.</p>
+                        <a class="contact-cta" href="stores.html">Find stockists near you</a>
+                    </div>
+                </div>
+                <div class="contact-visit-details">
+                    <h3>What's nearby?</h3>
+                    <ul>
+                        <li>Farm shop with seasonal produce and treats</li>
+                        <li>Viewing gallery of our ice cream making</li>
+                        <li>Play paddock for little explorers</li>
+                        <li>Plenty of free parking for coaches and cars</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Farmer Tom's Ice Cream</h4>
+                    <p>Crafting exceptional ice cream since day one</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: hello@farmertoms.com</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow</h4>
+                    <p>Instagram | Facebook | Twitter</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Farmer Tom's Ice Cream. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="contact.js"></script>
+</body>
+</html>
