@@ -131,8 +131,8 @@ a {
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden;
-    margin-bottom: 0;
+    overflow: visible;
+    margin-bottom: -40px;
 }
 
 /* Scroll Darkening Overlay - REMOVED */
@@ -1615,6 +1615,13 @@ a {
 
 .hero-to-green {
     background: transparent;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    z-index: 10;
 }
 
 .green-to-cream {
@@ -2023,7 +2030,7 @@ a {
 
 /* Contact Page */
 .contact-page {
-    background: linear-gradient(180deg, #f5eac3 0%, #ffffff 45%, #f5eac3 100%);
+    background: #f5eac3;
     padding-top: 80px;
 }
 
@@ -2119,6 +2126,10 @@ a {
     background: #f5eac3;
 }
 
+.contact-options-wave {
+    background: #f5eac3;
+}
+
 .contact-info-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2209,7 +2220,7 @@ a {
 }
 
 .contact-connect {
-    background: radial-gradient(circle at top, rgba(45, 88, 56, 0.1) 0%, rgba(255, 255, 255, 0) 55%);
+    background: #ffffff;
 }
 
 .contact-connect-grid {
