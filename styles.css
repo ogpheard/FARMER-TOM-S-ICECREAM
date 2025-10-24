@@ -72,7 +72,7 @@ a {
     margin: 0 auto;
     padding: 0.75rem 3rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -2030,33 +2030,14 @@ a {
 .contact-hero {
     position: relative;
     padding: 9rem 0 6rem;
-    background: linear-gradient(135deg, #020353 0%, #0e2b4a 45%, #2d5838 100%);
+    background: #020353;
     color: #f5eac3;
     overflow: hidden;
 }
 
 .contact-hero::before,
 .contact-hero::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(245, 234, 195, 0.18) 0%, rgba(245, 234, 195, 0) 70%);
-    filter: blur(0);
-    pointer-events: none;
-}
-
-.contact-hero::before {
-    width: 520px;
-    height: 520px;
-    top: -160px;
-    right: -140px;
-}
-
-.contact-hero::after {
-    width: 380px;
-    height: 380px;
-    bottom: -200px;
-    left: -120px;
+    display: none;
 }
 
 .contact-hero .section-container {
@@ -2131,7 +2112,7 @@ a {
 }
 
 .contact-hero-wave {
-    background: #0e2b4a;
+    background: #020353;
 }
 
 .contact-options {
@@ -2380,7 +2361,7 @@ a {
 }
 
 .contact-details-card {
-    background: linear-gradient(180deg, #0e2b4a 0%, #020353 100%);
+    background: #020353;
     color: #f5eac3;
     box-shadow: 0 28px 55px rgba(2, 3, 83, 0.25);
     border: 1px solid rgba(245, 234, 195, 0.18);
@@ -2459,7 +2440,7 @@ a {
 }
 
 .contact-visit {
-    background: linear-gradient(135deg, #2d5838 0%, #1b764e 100%);
+    background: #2d5838;
     color: #f5eac3;
     padding-bottom: 8rem;
 }
@@ -2475,7 +2456,7 @@ a {
     position: relative;
     min-height: 360px;
     border-radius: 26px;
-    background: radial-gradient(circle at 18% 22%, rgba(245, 234, 195, 0.75) 0%, rgba(245, 234, 195, 0.15) 36%, transparent 70%), linear-gradient(135deg, rgba(2, 3, 83, 0.85) 0%, rgba(45, 88, 56, 0.85) 100%);
+    background: rgba(2, 3, 83, 0.85);
     border: 3px solid rgba(245, 234, 195, 0.45);
     box-shadow: 0 26px 55px rgba(2, 3, 83, 0.28);
     overflow: hidden;
