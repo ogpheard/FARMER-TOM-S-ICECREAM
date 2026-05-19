@@ -1,0 +1,16 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)\\.mov",
+      "headers": [
+        { "key": "Content-Type", "value": "video/quicktime" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.avif",
+      "headers": [
+        { "key": "Content-Type", "value": "image/avif" }
+      ]
+    }
+  ]
+}
